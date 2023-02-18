@@ -1,0 +1,25 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.input-stack {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  
+}
+.marker-text::before {
+    content: "•"; /* add a bullet point as the marker */
+    display: inline-block;
+    margin-right: 10px; /* add some spacing between the marker and the text */
+    background-color: yellow; /* set the background color */
+    padding: 5px; /* add some padding for spacing */
+    border-radius: 50%; /* round the corners to create a circular marker */
+  }
+  
