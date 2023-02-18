@@ -11,6 +11,15 @@
   flex-direction: row;
   /* justify-content: center; */
 }
+
+.cards-container {
+  flex: 1;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .display-container {
   flex: 1;
   display: flex;
@@ -26,3 +35,13 @@
   align-items: center;
   flex-direction: column;
 }
+.btn-group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin-top: 20px;
+}
+

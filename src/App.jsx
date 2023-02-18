@@ -4,31 +4,32 @@ import Card2 from "./cards/Card2";
 import Card3 from "./cards/Card3";
 import { CardContext } from "./context";
 import "./App.css";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+
+const initialState = {
+  card1Input1: "",
+  card1Input2: "",
+  card1Input3: "",
+  card1Input4: "",
+  card1Input5: "",
+  card2Input: "",
+  card3Input: "",
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_INPUT_VALUE":
+      return { ...state, [action.payload.name]: action.payload.value };
+    default:
+      return state;
+  }
+};
 
 function App() {
   const [currentCard, setCurrentCard] = useState(0);
-
-  const initialState = {
-    card1Input: "",
-    card2Input: "",
-    card3Input: "",
-  };
-
-
-  
-  const [state, dispatch] = useReducer((state, action) => {
-    switch (action.type) {
-      case "SET_CARD1_INPUT":
-        return { ...state, card1Input: action.payload };
-      case "SET_CARD2_INPUT":
-        return { ...state, card2Input: action.payload };
-      case "SET_CARD3_INPUT":
-        return { ...state, card3Input: action.payload };
-      default:
-        return state;
-    }
-  }, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const cards = [<Card1 />, <Card2 />, <Card3 />];
 
@@ -37,18 +38,43 @@ function App() {
       setCurrentCard(currentCard + 1);
     }
   }
+  const handlePrev = () => {
+    if (currentCard > 0) {
+      setCurrentCard(currentCard - 1);
+    }
+  };
 
   const isLastCard = currentCard === cards.length - 1;
+  const isFirstCard = currentCard === 0;
 
   return (
     <CardContext.Provider value={{ state, dispatch }}>
       <div className="app-container">
         {/* cards */}
-        <div style={{ flex: 1 }}>
+        <div className="cards-container">
           {cards[currentCard]}
+          <div className="btn-group">
+            <Button
+              variant="outlined"
+              onClick={handlePrev}
+              disabled={isFirstCard}
+            >
+              חזור
+            </Button>
+            <Button
+              variant="contained"
+              onClick={handleNext}
+              disabled={isLastCard}
+            >
+              המשך
+            </Button>
+          </div>
+
+          {/* <Button>
           <button onClick={handleNext} disabled={isLastCard}>
             Next
           </button>
+          </Button> */}
         </div>
         {/* display */}
         <div className="display-container">
@@ -62,16 +88,14 @@ function App() {
           <Typography variant="body1">ובין</Typography>
           <Typography variant="body1">(להלן:"השוכר\ים")</Typography>
           <Typography variant="body1">
-            הואיל והמשכיר הינו בעל הזכויות הרשום והבלעדי של דירה בת 4 חדרים
-            ברחוב ארנון, מספר 15, דירה 2 בעיר <mark>{state.card1Input}</mark>{" "}
-            (להלן "הדירה"); והואיל והצדדים מעוניינים להתקשר בהסכם זה, לפיו ישכור
-            השוכר את הדירה מאת המשכיר.
+            הואיל והמשכיר הינו בעל הזכויות הרשום והבלעדי של דירה בת{" "}
+            <mark>{state.card1Input5}</mark> חדרים ברחוב{" "}
+            <mark>{state.card1Input2}</mark> , מספר{" "}
+            <mark>{state.card1Input3}</mark>, דירה{" "}
+            <mark>{state.card1Input4}</mark> בעיר{" "}
+            <mark>{state.card1Input1}</mark> (להלן "הדירה"); והואיל והצדדים
+            מעוניינים להתקשר בהסכם זה, לפיו ישכור השוכר את הדירה מאת המשכיר.
           </Typography>
-          <mark>salamander</mark>
-
-          <div>Card 1 Input: </div>
-          <div>Card 2 Input: {state.card2Input}</div>
-          <div>Card 3 Input: {state.card3Input}</div>
         </div>
       </div>
     </CardContext.Provider>

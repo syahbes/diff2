@@ -8,14 +8,13 @@ import "./cards.css";
 function Card1() {
   const { state, dispatch } = useContext(CardContext);
 
-  function handleCard1InputChange(event) {
-    console.log(event.target.id)
-    dispatch({ type: "SET_CARD1_INPUT", payload: event.target.value });
-  }
+  const handleCard1InputChange = (e) => {
+    dispatch({
+      type: "SET_INPUT_VALUE",
+      payload: { name: e.target.id, value: e.target.value },
+    });
+  };
 
-  {
-    /* <input type="text" value={state.card1Input} onChange={handleCard1InputChange} /> */
-  }
   return (
     <div className="card-container">
       <div className="centered-col">
@@ -26,35 +25,48 @@ function Card1() {
         <Typography variant="subtitle1">מה כתובת הנכס המושכר?</Typography>
       </div>
 
-      {/* <input type="text" value={state.card1Input} onChange={handleCard1InputChange} /> */}
-
       <div className="input-stack">
-        <TextField id="city" label="עיר" variant="standard" size="small" onChange={handleCard1InputChange}/>
-        <TextField id="street" label="רחוב" variant="standard" size="small" />
+        <TextField
+          id="card1Input1"
+          label="עיר"
+          variant="standard"
+          size="small"
+          onChange={handleCard1InputChange}
+        />
+        <TextField
+          id="card1Input2"
+          label="רחוב"
+          variant="standard"
+          size="small"
+          onChange={handleCard1InputChange}
+        />
       </div>
 
       <div className="input-stack">
         <TextField
-          id="homeNumber"
+          id="card1Input3"
           label="בית"
           variant="standard"
           size="small"
           type={"number"}
+          onChange={handleCard1InputChange}
         />
         <TextField
-          id="apartment"
+          id="card1Input4"
           label="דירה"
           variant="standard"
           size="small"
           type={"number"}
+          onChange={handleCard1InputChange}
         />
       </div>
       <TextField
-        id="rooms"
+        id="card1Input5"
         label="חדרים"
         variant="standard"
         size="small"
         type={"number"}
+        onChange={handleCard1InputChange}
       />
     </div>
   );
