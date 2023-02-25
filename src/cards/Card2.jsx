@@ -45,6 +45,7 @@ const reverseDate = (dateStr) => {
 function Card2() {
   const { state, dispatch } = useContext(CardContext);
   const [exitDate, setExitDate] = useState("");
+
   const handleCardInputChange = (e) => {
     dispatch({ type: "SCROLL_INTO", payload: "dateRef" });
     dispatch({
@@ -64,13 +65,14 @@ function Card2() {
   };
 
   const handleSwitchChange = (e) => {
-    // console.log(e.target.checked)
     dispatch({ type: "SCROLL_INTO", payload: "optionRef" });
+
     dispatch({
       type: "SET_INPUT_VALUE",
       payload: { name: e.target.id, value: e.target.checked },
     });
   };
+
   const CustomSwitch = () => {
     return (
       <div className="extOption">

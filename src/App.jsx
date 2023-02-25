@@ -6,6 +6,10 @@ import "./App.css";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
+function formatNumberWithCommas(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const cards = [
   <Card1 />,
   <Card2 />,
@@ -43,7 +47,7 @@ const initialState = {
 };
 
 function App() {
-  const [dateRef, optionRef, rentRef] = ["dateRef", "optionRef", "rentRef"].map(
+  const [dateRef, optionRef, rentRef,includeRef] = ["dateRef", "optionRef", "rentRef","includeRef"].map(
     () => useRef(null)
   );
 
@@ -89,6 +93,7 @@ function App() {
       dateRef: dateRef,
       optionRef: optionRef,
       rentRef: rentRef,
+      includeRef: includeRef,
     };
     const targetRef = refMap[props];
     if (targetRef) {
@@ -205,22 +210,45 @@ function App() {
               <strong>2. דמי השכירות</strong>
             </Typography>
 
-            <Typography variant="body2" mb={2}>
-              2.1 השוכר ישלם למשכיר, במהלך תקופת השכירות, דמי שכירות חודשיים בסך
-              1000 ש"ח (להלן: "דמי השכירות"). דמי השכירות ישולמו על ידי השוכר
-              למשכיר מידי חודש בחודשו במהלך תקופת השכירות, ב-2 לכל חודש. מוסכם
-              כי דמי השכירות יחולקו באופן הבא: שוכר 1 - יושלם בהמשך. שוכר 2 -
-              יושלם בהמשך. מוסכם, כי אי תשלום דמי השכירות במלואם ובמועדם ייחשב
-              להפרה יסודית של השוכר.
+            <Typography variant="body2" mb={1}>
+              2.1 השוכר ישלם למשכיר, במהלך תקופת השכירות, דמי שכירות חודשיים בסך{" "}
+              <mark>{formatNumberWithCommas(state.card3Input1)}</mark> ש"ח
+              (להלן: "דמי השכירות"). דמי השכירות ישולמו על ידי השוכר למשכיר מידי
+              חודש בחודשו במהלך תקופת השכירות, ב-
+              <mark>{state.card3Input3}</mark> לכל חודש.
             </Typography>
             <Typography variant="body2" mb={2}>
-            2.2 הצדדים מאשרים כי דמי השכירות נקבעו לאחר שניתן לשוכר מידע בדבר דמי השכירות ששולמו בגין השכרת הדירה בשנים עשר (12) החודשים שקדמו למועד החתימה על הסכם זה, ככל שהשוכר ביקש לקבל מידע זה.
+              {state.card3Input2 > 1 && (
+                <>
+                  מוסכם כי דמי השכירות יחולקו באופן הבא:
+                  <br />
+                  שוכר 1 - יושלם בהמשך.
+                  <br />
+                  שוכר 2 - יושלם בהמשך.
+                </>
+              )}
+              {state.card3Input2 > 2 && (
+                <>
+                  <br />
+                  שוכר 3 - יושלם בהמשך.
+                  <br />
+                </>
+              )}
+              מוסכם, כי אי תשלום דמי השכירות במלואם ובמועדם ייחשב להפרה יסודית
+              של השוכר.
             </Typography>
             <Typography variant="body2" mb={2}>
-            2.3 בכל מקרה של אי תשלום בפועל של דמי השכירות, במלואם ובמועדם, השוכר מתחייב להסדיר באופן מידי את התשלום במלואו. מבלי לגרוע מיתר הוראות הסכם זה, במקרה שדמי השכירות לא שולמו תוך שבעה (7) ימים מהמועד שנקבע לתשלומם, יתווסף לכל חלק מדמי השכירות שטרם שולם פיצוי מוסכם בסך 150 ש"ח עבור כל יום נוסף בו לא הוסדר התשלום.
+              2.2 הצדדים מאשרים כי דמי השכירות נקבעו לאחר שניתן לשוכר מידע בדבר
+              דמי השכירות ששולמו בגין השכרת הדירה בשנים עשר (12) החודשים שקדמו
+              למועד החתימה על הסכם זה, ככל שהשוכר ביקש לקבל מידע זה.
             </Typography>
-
-
+            <Typography variant="body2" mb={2}>
+              2.3 בכל מקרה של אי תשלום בפועל של דמי השכירות, במלואם ובמועדם,
+              השוכר מתחייב להסדיר באופן מידי את התשלום במלואו. מבלי לגרוע מיתר
+              הוראות הסכם זה, במקרה שדמי השכירות לא שולמו תוך שבעה (7) ימים
+              מהמועד שנקבע לתשלומם, יתווסף לכל חלק מדמי השכירות שטרם שולם פיצוי
+              מוסכם בסך 150 ש"ח עבור כל יום נוסף בו לא הוסדר התשלום.
+            </Typography>
 
             <div ref={optionRef} />
             <Typography variant="body2">
@@ -253,29 +281,58 @@ function App() {
                 </Typography>
               </>
             )}
-          </div>
 
-          <div>
-            מספר שוכרים
-            {state.card3Input2}
-          </div>
-          <div>
-            תאריך לחיוב
-            {state.card3Input3}
-          </div>
-          <div>
-            כולל ארנונה?
-            {state.card3Includes.arnona ? "כולל ארנונה" : "לא כולל ארנונה"}
-          </div>
-          <div>
-            כולל גז?
-            {state.card3Includes.gas ? "כולל גז" : "לא כולל גז"}
-          </div>
-          <div>
-            כולל מים?
-            {state.card3Includes.water ? "כולל מים" : "לא כולל מים"}
-          </div>
+            <div ref={includeRef}
+            />
+            <Typography variant="body2">
+              <strong>4. מיסים ותשלומים אחרים</strong>
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              4.1 במהלך תקופת השכירות יישא השוכר בכל מס, חיוב, היטל או תשלום אחר
+              בקשר עם החזקת הדירה והשימוש השוטף בה, לרבות ארנונה; גז; חשמל;
+              אינטרנט; מים; חימום; ועד בית ודמי ניהול; טלויזיה בלווין\כבלים;
+              (להלן ביחד: "התשלומים השוטפים"), ובכל מקרה, למעט תשלומים החלים לפי
+              כל דין על בעל הדירה ואשר לא נקבע במפורש בהסכם זה כי ישולמו על ידי
+              המשכיר. מוסכם, כי אי תשלום התשלומים השוטפים במלואם ובמועדם ייחשב
+              להפרה יסודית של הסכם זה על-ידי השוכר.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              4.2 השוכר מתחייב להעביר על שמו, מיד עם תחילת תקופת השכירות ולא
+              יאוחר מ-30 יום מתחילתה, את כל החשבונות בכל הגופים והרשויות
+              המתאימים, כפי שמופיעים בסעיף 4.1, וחשבונות אלו יישארו רשומים על שם
+              השוכר עד תום תקופת השכירות. השוכר מתחייב להמציא למשכיר, מיד עם תום
+              תקופת השכירות ו\או בכל מקרה שהמשכיר ידרוש זאת מהשוכר, קבלות
+              המעידות על ביצוע כל התשלומים השוטפים ואלו החלים עליו כאמור בהסכם
+              זה.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              4.3 השוכר לא יישא בכל מס, חיוב, היטל או תשלום המיועד או קשור
+              לרכישה או לשדרוג של מערכות או מתקנים קבועים המשרתים את הדירה, או
+              את הבית המשותף, למעט התאמות מיוחדות או שיפורים שבוצעו לפי דרישת
+              השוכר, ובכפוף להסכמת המשכיר.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              <mark>
+            {state.card3Includes.arnona || 
+              state.card3Includes.gas || 
+              state.card3Includes.electricity || 
+              state.card3Includes.internet || 
+              state.card3Includes.water || 
+              state.card3Includes.heat || 
+              state.card3Includes.vaad || 
+              state.card3Includes.tv ? "4.4 מוסכם בין הצדדים כי דמי השכירות כוללים בתוכם " : ""}
 
+            {state.card3Includes.arnona && "ארנונה, "}
+              {state.card3Includes.gas && "גז, "}
+              {state.card3Includes.electricity && "חשמל, "}
+              {state.card3Includes.internet && "אינטרנט, "}
+              {state.card3Includes.water && "מים, "}
+              {state.card3Includes.heat && "חימום, "}
+              {state.card3Includes.vaad && "ועד בית ודמי ניהול, "}
+              {state.card3Includes.tv && "טלויזיה בלווין / כבלים, "}
+              </mark>
+            </Typography>
+          </div>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
             architecto odio illo ut laboriosam ex nemo eum, adipisci sunt

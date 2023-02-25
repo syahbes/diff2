@@ -36,12 +36,13 @@ const checkBoxMap = [
   { label: "מים", id: "water" },
   { label: "חימום", id: "heat" },
   { label: "ועד בית ודמי ניהול", id: "vaad" },
-  { label: "טלויזיה בלוין / כבלים", id: "tv" },
+  { label: "טלויזיה בלווין / כבלים", id: "tv" },
 ];
 
 function Card3() {
   const { state, dispatch } = useContext(CardContext);
   const handleInputChange = (e) => {
+    setTimeout(() => { dispatch({ type: "SCROLL_INTO", payload: "rentRef" }) }, 20);
     dispatch({
       type: "SET_INPUT_VALUE",
       payload: { name: e.target.id, value: e.target.value },
@@ -49,14 +50,15 @@ function Card3() {
   };
 
   const handleSelect = (e) => {
-        dispatch({
+    setTimeout(() => { dispatch({ type: "SCROLL_INTO", payload: "rentRef" }) }, 20);
+    dispatch({
       type: "SET_INPUT_VALUE",
       payload: { name: e.target.name, value: e.target.value },
     });
-    dispatch({ type: "SCROLL_INTO", payload: "rentRef" });
   };
 
   const handleSwitchChange = (event) => {
+    dispatch({ type: "SCROLL_INTO", payload: "includeRef" });
     dispatch({
       type: "SET_INPUT_VALUE",
       payload: { name: event.target.id, value: event.target.checked },
@@ -66,6 +68,7 @@ function Card3() {
     }
   };
   const handleCheck = (e) => {
+   
     // console.log("dispatching",e.target.id, e.target.checked);
     dispatch({
       type: "SET_CHECK_VALUE",
@@ -73,9 +76,9 @@ function Card3() {
     });
   };
 
-  useEffect(() => {
-    dispatch({ type: "SCROLL_INTO", payload: "rentRef" });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ type: "SCROLL_INTO", payload: "rentRef" });
+  // }, []);
 
   const CustomSwitch = () => {
     return (
@@ -120,7 +123,10 @@ function Card3() {
       </div>
       <div className="input-stack">
         <Box sx={{ minWidth: 150 }}>
-          <FormControl variant="standard" fullWidth>
+          <FormControl
+            variant="standard"
+            fullWidth
+          >
             <InputLabel id="numofRent-label">מספר שוכרים</InputLabel>
             <Select
               id="card3Input2"
@@ -128,6 +134,7 @@ function Card3() {
               labelId="numofRent-label"
               value={state.card3Input2}
               onChange={handleSelect}
+             
             >
               <MenuItem value="1">1</MenuItem>
               <MenuItem value="2">2</MenuItem>
