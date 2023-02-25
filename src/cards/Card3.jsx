@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CardContext } from "../context";
 import avatrImage from "../assets/1.jpg";
 
@@ -41,11 +41,6 @@ const checkBoxMap = [
 
 function Card3() {
   const { state, dispatch } = useContext(CardContext);
-  const tryMe = () => {
-    console.log("well");
-    dispatch({ type: "SCROLL_INTO", payload: "rentRef" });
-  };
-
   const handleInputChange = (e) => {
     dispatch({
       type: "SET_INPUT_VALUE",
@@ -54,11 +49,11 @@ function Card3() {
   };
 
   const handleSelect = (e) => {
-    dispatch({ type: "SCROLL_INTO", payload: "rentRef" });
-    dispatch({
+        dispatch({
       type: "SET_INPUT_VALUE",
       payload: { name: e.target.name, value: e.target.value },
     });
+    dispatch({ type: "SCROLL_INTO", payload: "rentRef" });
   };
 
   const handleSwitchChange = (event) => {
@@ -77,6 +72,11 @@ function Card3() {
       payload: { name: e.target.id, value: e.target.checked },
     });
   };
+
+  useEffect(() => {
+    dispatch({ type: "SCROLL_INTO", payload: "rentRef" });
+  }, []);
+
   const CustomSwitch = () => {
     return (
       <div className="extOption">
@@ -127,10 +127,7 @@ function Card3() {
               name="card3Input2"
               labelId="numofRent-label"
               value={state.card3Input2}
-              onChange={(e) => {
-                tryMe();
-                handleSelect(e);
-              }}
+              onChange={handleSelect}
             >
               <MenuItem value="1">1</MenuItem>
               <MenuItem value="2">2</MenuItem>
@@ -187,7 +184,6 @@ function Card3() {
           </FormGroup>
         </div>
       )}
-      <button onClick={tryMe}>CLICK ME</button>
     </div>
   );
 }
