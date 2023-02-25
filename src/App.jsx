@@ -1,11 +1,19 @@
 import React, { useState, useReducer, useRef } from "react";
-import Card1 from "./cards/Card1";
-import Card2 from "./cards/Card2";
-import Card3 from "./cards/Card3";
+import { Card1, Card2, Card3, Card4, Card5, Card6 } from "./cards/cards";
+
 import { CardContext } from "./context";
 import "./App.css";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+
+const cards = [
+  <Card1 />,
+  <Card2 />,
+  <Card3 />,
+  <Card4 />,
+  <Card5 />,
+  <Card6 />,
+];
 
 const initialState = {
   card1Input1: "",
@@ -21,23 +29,54 @@ const initialState = {
   card3Input1: "",
   card3Input2: "",
   card3Input3: "",
+  card3Input4: false,
+  card3Includes: {
+    arnona: false,
+    gas: false,
+    electricity: false,
+    internet: false,
+    water: false,
+    heat: false,
+    vaad: false,
+    tv: false,
+  },
 };
 
 function App() {
-  const [dateRef, optionRef, anotherRef] = [
-    "dateRef",
-    "optionRef",
-    "anotherRef",
-  ].map(() => useRef(null));
+  const [dateRef, optionRef, rentRef] = ["dateRef", "optionRef", "rentRef"].map(
+    () => useRef(null)
+  );
 
   const reducer = (state, action) => {
     switch (action.type) {
       case "SET_INPUT_VALUE":
         return { ...state, [action.payload.name]: action.payload.value };
       case "SCROLL_INTO": {
-        scrollToDisplay(action.payload)
+        scrollToDisplay(action.payload);
         return state;
       }
+      case "SET_CHECK_VALUE":
+        return {
+          ...state,
+          card3Includes: {
+            ...state.card3Includes,
+            [action.payload.name]: action.payload.value,
+          },
+        };
+      case "RESET_CARD_3_INCLUDES":
+        return {
+          ...state,
+          card3Includes: {
+            arnona: false,
+            gas: false,
+            electricity: false,
+            internet: false,
+            water: false,
+            heat: false,
+            vaad: false,
+            tv: false,
+          },
+        };
       default:
         return state;
     }
@@ -45,23 +84,17 @@ function App() {
   const [currentCard, setCurrentCard] = useState(0);
   const [state, dispatch] = useReducer(reducer, initialState);
 
-
   function scrollToDisplay(props) {
     const refMap = {
       dateRef: dateRef,
       optionRef: optionRef,
+      rentRef: rentRef,
     };
     const targetRef = refMap[props];
     if (targetRef) {
       targetRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }
-
-  const cards = [
-    <Card1 />,
-    <Card2 />,
-    <Card3 scrollToDisplay={scrollToDisplay} />,
-  ];
 
   function handleNext() {
     if (currentCard < cards.length - 1) {
@@ -102,28 +135,33 @@ function App() {
         </div>
         {/* display */}
         <div className="display-container">
-          <Typography variant="h5">
-            <strong>הסכם שכירות</strong>
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            בין
-          </Typography>
-          <Typography variant="body2">מר/גברת _____</Typography>
-          <Typography variant="body2">ת.ז _____</Typography>
-          <Typography variant="body2">מרחוב _____</Typography>
-          <Typography variant="body2">טלפון</Typography>
-          <Typography variant="body2">(להלן: "המשכיר")</Typography>
-          <Typography variant="body2">ובין</Typography>
-          <Typography variant="body2">(להלן:"השוכר\ים")</Typography>
-          <Typography variant="body2">
-            הואיל והמשכיר הינו בעל הזכויות הרשום והבלעדי של דירה בת{" "}
-            <mark>{state.card1Input5}</mark> חדרים ברחוב{" "}
-            <mark>{state.card1Input2}</mark> , מספר{" "}
-            <mark>{state.card1Input3}</mark>, דירה{" "}
-            <mark>{state.card1Input4}</mark> בעיר{" "}
-            <mark>{state.card1Input1}</mark> (להלן "הדירה"); והואיל והצדדים
-            מעוניינים להתקשר בהסכם זה, לפיו ישכור השוכר את הדירה מאת המשכיר.
-          </Typography>
+          <div className="sectionA">
+            <Typography variant="h5" mb={3}>
+              <strong>הסכם שכירות</strong>
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              בין
+            </Typography>
+            <Typography variant="body2">מר/גברת _____</Typography>
+            <Typography variant="body2">ת.ז _____</Typography>
+            <Typography variant="body2">מרחוב _____</Typography>
+            <Typography variant="body2">טלפון</Typography>
+            <Typography variant="body2">(להלן: "המשכיר")</Typography>
+            <Typography variant="body2">ובין</Typography>
+            <Typography variant="body2" mb={2}>
+              (להלן:"השוכר\ים")
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              הואיל והמשכיר הינו בעל הזכויות הרשום והבלעדי של דירה בת{" "}
+              <mark>{state.card1Input5}</mark> חדרים ברחוב{" "}
+              <mark>{state.card1Input2}</mark> , מספר{" "}
+              <mark>{state.card1Input3}</mark>, דירה{" "}
+              <mark>{state.card1Input4}</mark> בעיר{" "}
+              <mark>{state.card1Input1}</mark> (להלן "הדירה"); והואיל והצדדים
+              מעוניינים להתקשר בהסכם זה, לפיו ישכור השוכר את הדירה מאת המשכיר.
+            </Typography>
+          </div>
+
           <div>
             <Typography variant="body2" mb={2}>
               <strong>לפיכך, הוצהר, הותנה והוסכם בין הצדדים, כדלקמן:</strong>
@@ -134,11 +172,9 @@ function App() {
             <Typography variant="body2" gutterBottom>
               <strong>1. תקופת השכירות וסיומה</strong>
             </Typography>
-
             <Typography variant="body2" mb={2}>
               1.1 המשכיר משכיר בזה לשוכר, והשוכר שוכר בזה מהמשכיר את הדירה, החל
-              מתאריך
-              <mark>{state.card2Input1}</mark> ועד לתאריך
+              מתאריך <mark>{state.card2Input1}</mark> ועד לתאריך{" "}
               <mark>{state.card2Input2}</mark> (להלן: "תקופת השכירות")
             </Typography>
             <Typography variant="body2" mb={2}>
@@ -147,15 +183,99 @@ function App() {
               את כל התחייבויות השוכר לפי הסכם זה לתקופת השכירות הנותרת. המשכיר
               לא יסרב לאשר את השוכר החליפי, אלא מטעמים סבירים.
             </Typography>
+            <Typography variant="body2" mb={2}>
+              1.3 אם השוכר יפנה את הדירה לפני תום תקופת השכירות בניגוד להוראות
+              הסכם זה, יהיה עליו להמשיך לעמוד בכל התחייבויותיו לפי הסכם זה,
+              לרבות תשלום מלוא דמי השכירות וכל התשלומים השוטפים עד לתום תקופת
+              השכירות.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              1.4 המשכיר יהיה רשאי לסיים את תקופת השכירות באופן מיידי במקרה של
+              הפרה יסודית של הסכם זה על ידי השוכר אשר לא תוקנה תוך ארבע עשר (14)
+              ימים ממועד מסירת דרישה בכתב לשוכר לתיקון ההפרה.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              1.5 במהלך תקופה של תשעים (90) ימים לפני תום תקופת השכירות, יהיה
+              רשאי המשכיר להראות את הדירה לשוכרים פוטנציאליים, בתיאום מראש עם
+              השוכר.
+            </Typography>
+
+            <div ref={rentRef} />
+            <Typography variant="body2">
+              <strong>2. דמי השכירות</strong>
+            </Typography>
+
+            <Typography variant="body2" mb={2}>
+              2.1 השוכר ישלם למשכיר, במהלך תקופת השכירות, דמי שכירות חודשיים בסך
+              1000 ש"ח (להלן: "דמי השכירות"). דמי השכירות ישולמו על ידי השוכר
+              למשכיר מידי חודש בחודשו במהלך תקופת השכירות, ב-2 לכל חודש. מוסכם
+              כי דמי השכירות יחולקו באופן הבא: שוכר 1 - יושלם בהמשך. שוכר 2 -
+              יושלם בהמשך. מוסכם, כי אי תשלום דמי השכירות במלואם ובמועדם ייחשב
+              להפרה יסודית של השוכר.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+            2.2 הצדדים מאשרים כי דמי השכירות נקבעו לאחר שניתן לשוכר מידע בדבר דמי השכירות ששולמו בגין השכרת הדירה בשנים עשר (12) החודשים שקדמו למועד החתימה על הסכם זה, ככל שהשוכר ביקש לקבל מידע זה.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+            2.3 בכל מקרה של אי תשלום בפועל של דמי השכירות, במלואם ובמועדם, השוכר מתחייב להסדיר באופן מידי את התשלום במלואו. מבלי לגרוע מיתר הוראות הסכם זה, במקרה שדמי השכירות לא שולמו תוך שבעה (7) ימים מהמועד שנקבע לתשלומם, יתווסף לכל חלק מדמי השכירות שטרם שולם פיצוי מוסכם בסך 150 ש"ח עבור כל יום נוסף בו לא הוסדר התשלום.
+            </Typography>
+
+
+
+            <div ref={optionRef} />
+            <Typography variant="body2">
+              <strong>3. תקופת האופציה</strong>
+            </Typography>
+
+            {!state.card2Input3 ? (
+              <Typography variant="body2">ללא תקופת אופציה</Typography>
+            ) : (
+              <>
+                <Typography variant="body2" mb={2}>
+                  <mark>
+                    3.1 השוכר רשאי להאריך את תוקף הסכם זה ממועד סיום תקופת
+                    השכירות, קרי תאריך 10.09.2020 ועד לתאריך 10.09.2021 (להלן:
+                    "האופציה" ו"תקופת האופציה"), באמצעות הודעה בכתב למשכיר לפחות
+                    שישי (60) ימים טרם תום תקופת השכירות, והכל בכפוף לכך שהשוכר
+                    עמד במלוא התחייבויותיו על פי הסכם זה ולא הפר אותו בתקופת
+                    השכירות. המשכיר יהיה רשאי להעלות את דמי השכירות בתקופת
+                    האופציה בלא יותר משלושה אחוזים (3%) לשנה או גובה שיעור
+                    השינוי במדד המחירים לצרכן על פני תקופת השכירות, הגבוה
+                    מביניהם.
+                  </mark>
+                </Typography>
+                <Typography variant="body2" mb={2}>
+                  3.2 במקרה של מימוש האופציה על ידי השוכר, יחתמו השוכר והמשכיר,
+                  לפחות ארבעים וחמישה (45) ימים טרם תחילת תקופת האופציה, על חוזה
+                  שכירות. בתקופת האופציה יחולו על הצדדים כל הוראות הסכם זה,
+                  בשינויים המחויבים, לרבות כל הוראות ההסכם הנוגעות לתשלום דמי
+                  השכירות ותשלומים נוספים.
+                </Typography>
+              </>
+            )}
           </div>
 
-          {!state.card2Input3 ? (
-            <Typography variant="body2">ללא תקופת אופציה</Typography>
-          ) : (
-            <Typography variant="body2">
-              כל הטקסט של אופציה להארכת חוזה
-            </Typography>
-          )}
+          <div>
+            מספר שוכרים
+            {state.card3Input2}
+          </div>
+          <div>
+            תאריך לחיוב
+            {state.card3Input3}
+          </div>
+          <div>
+            כולל ארנונה?
+            {state.card3Includes.arnona ? "כולל ארנונה" : "לא כולל ארנונה"}
+          </div>
+          <div>
+            כולל גז?
+            {state.card3Includes.gas ? "כולל גז" : "לא כולל גז"}
+          </div>
+          <div>
+            כולל מים?
+            {state.card3Includes.water ? "כולל מים" : "לא כולל מים"}
+          </div>
+
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
             architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
@@ -192,7 +312,7 @@ function App() {
             molestiae labore enim corporis. Necessitatibus autem quam culpa
             optio quos?
           </p>
-          <div ref={optionRef}>
+          <div>
             <p>HI</p>
           </div>
           <p>

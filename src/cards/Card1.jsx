@@ -1,9 +1,10 @@
-import { Avatar, Box, TextField, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { CardContext } from "../context";
 import avatrImage from "../assets/1.jpg";
-import { Stack } from "@mui/system";
 import "./cards.css";
+import Avatar from "@mui/material/Avatar";
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 
 function Card1() {
   const { state, dispatch } = useContext(CardContext);

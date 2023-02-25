@@ -1,9 +1,9 @@
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import Switch from "@mui/material/Switch";
 import React, { useContext, useState } from "react";
 import { CardContext } from "../context";
 import avatrImage from "../assets/1.jpg";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import Switch from "@mui/material/Switch";
 
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
@@ -42,7 +42,6 @@ const reverseDate = (dateStr) => {
   return dateStr.split("-").reverse().join("-");
 };
 
-
 function Card2() {
   const { state, dispatch } = useContext(CardContext);
   const [exitDate, setExitDate] = useState("");
@@ -59,14 +58,17 @@ function Card2() {
         type: "SET_INPUT_VALUE",
         payload: { name: "card2Input2", value: reverseDate(calExitDate) },
       });
+    } else {
+      setExitDate(e.target.value);
     }
   };
 
-  const handleSwitchChange = (event) => {
-    // console.log(event.target.checked)
+  const handleSwitchChange = (e) => {
+    // console.log(e.target.checked)
+    dispatch({ type: "SCROLL_INTO", payload: "optionRef" });
     dispatch({
       type: "SET_INPUT_VALUE",
-      payload: { name: event.target.id, value: event.target.checked },
+      payload: { name: e.target.id, value: e.target.checked },
     });
   };
   const CustomSwitch = () => {
@@ -84,7 +86,6 @@ function Card2() {
       </div>
     );
   };
-  
 
   return (
     <div className="card-container">
@@ -114,7 +115,7 @@ function Card2() {
       </div>
       <div className="extOptionContainer">
         <Typography variant="body1">הארכת חוזה?</Typography>
-        <CustomSwitch/>
+        <CustomSwitch />
       </div>
     </div>
   );
