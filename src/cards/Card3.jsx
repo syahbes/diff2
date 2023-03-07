@@ -80,6 +80,7 @@ function Card3() {
   //   dispatch({ type: "SCROLL_INTO", payload: "rentRef" });
   // }, []);
 
+
   const CustomSwitch = () => {
     return (
       <div className="extOption">

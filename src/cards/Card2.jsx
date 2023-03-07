@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CardContext } from "../context";
 import avatrImage from "../assets/1.jpg";
 import Avatar from "@mui/material/Avatar";
@@ -47,12 +47,12 @@ function Card2() {
   const [exitDate, setExitDate] = useState("");
 
   const handleCardInputChange = (e) => {
-    dispatch({ type: "SCROLL_INTO", payload: "dateRef" });
     dispatch({
       type: "SET_INPUT_VALUE",
       payload: { name: e.target.id, value: reverseDate(e.target.value) },
     });
     if (e.target.id === "card2Input1") {
+      dispatch({ type: "SCROLL_INTO", payload: "dateRef" });
       let calExitDate = manipulateDate(e.target.value);
       setExitDate(calExitDate);
       dispatch({
@@ -88,6 +88,14 @@ function Card2() {
       </div>
     );
   };
+
+  useEffect(()=> {
+    let calOptionDate = exitDate ? manipulateDate(exitDate) : "";
+    dispatch({
+      type: "SET_INPUT_VALUE",
+      payload: { name:  "card2Input4", value: reverseDate(calOptionDate) },
+    });
+  }, [state.card2Input2])
 
   return (
     <div className="card-container">
