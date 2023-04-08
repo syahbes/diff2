@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   direction: rtl;
-  transition: ease-in-out ;
+  transition: ease-in-out;
 }
 
 .app-container {
@@ -23,8 +23,8 @@
   flex-direction: column;
   justify-content: space-around;
   max-height: 90vh;
-overflow-y: auto;
-  
+  overflow-y: auto;
+
 }
 
 .display-container {
@@ -36,9 +36,10 @@ overflow-y: auto;
   border: 1px solid black;
   padding: 1em;
   height: 90vh;
-  
+
   overflow: auto;
 }
+
 .sectionA {
   display: flex;
   flex-direction: column;

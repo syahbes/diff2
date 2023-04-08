@@ -1,8 +1,6 @@
-import React from 'react'
-
 const Card6 = () => {
   return (
-    <div>Card6</div>
+    <div>חיות מחמד - צביעת דירה</div>
   )
 }
 

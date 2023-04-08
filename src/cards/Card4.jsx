@@ -2,7 +2,7 @@ import React from 'react'
 
 const Card4 = () => {
   return (
-    <div>Card4</div>
+    <div>כל מה שקשור לבטחונות</div>
   )
 }
 

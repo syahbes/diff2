@@ -89,13 +89,13 @@ function Card2() {
     );
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     let calOptionDate = exitDate ? manipulateDate(exitDate) : "";
     dispatch({
       type: "SET_INPUT_VALUE",
-      payload: { name:  "card2Input4", value: reverseDate(calOptionDate) },
+      payload: { name: "card2Input4", value: reverseDate(calOptionDate) },
     });
-  }, [state.card2Input2])
+  }, [state.card2Input2]);
 
   return (
     <div className="card-container">
