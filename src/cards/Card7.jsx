@@ -17,7 +17,7 @@ const cacheLtr = createCache({
 
 const Card7 = () => {
   // useEffect(() => {
-  //   dispatch({ type: "SCROLL_INTO", payload: "petsRef" });
+  //   dispatch({ type: "SCROLL_INTO", payload: "ENTER_REF_NAME" });
   // }, []);
   const { state, dispatch } = useContext(CardContext);
 
@@ -87,16 +87,16 @@ const Card7 = () => {
             </div>
           )}
           <CustomSwitch id={4} text={"התחייבות בחוזה לעריכת ביטוחים"} />
-          <CustomSwitch id={5} text={"רוצה להוסיף משהו בקסט חופשי?"} />
+          <CustomSwitch id={5} text={"רוצה להוסיף משהו בטקסט חופשי?"} />
           {state.card7Switch5 && (
             <TextField
-            fullWidth
-            id="card7Input6"
-            label="לדוגמא: אסור לשוכרים לקדוח בקרמיקה"
-            variant="standard"
-            size="small"
-            onChange={handleCard5InputChange}
-          />
+              fullWidth
+              id="card7Input6"
+              label="לדוגמא: אסור לשוכרים לקדוח בקרמיקה"
+              variant="standard"
+              size="small"
+              onChange={handleCard5InputChange}
+            />
           )}
         </div>
       </div>

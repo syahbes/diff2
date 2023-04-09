@@ -46,7 +46,18 @@ const initialState = {
     vaad: false,
     tv: false,
   },
-  //card4 -placeholder-
+  card4SignBy: "שוכר",
+  card4Switch1: false, //צק בטחון
+  card4Input1: "",
+  card4Switch2: false, //ערבות
+  card4Input2: "",
+  card4Switch3: false, // פיקדון
+  card4Input3: "",
+  card4Switch4: false, // שטר חוב
+  card4Input4: "",
+  card4Switch5: false, // צק בנקאי
+  card4Input5: "",
+
   card5Input1: "",
   card5Input2: "",
   card5Input3: "",
@@ -65,13 +76,14 @@ const initialState = {
 };
 
 function App() {
-  const [dateRef, optionRef, rentRef, includeRef, equipmentRef, petsRef] = [
+  const [dateRef, optionRef, rentRef, includeRef, equipmentRef, petsRef, securityRef] = [
     "dateRef",
     "optionRef",
     "rentRef",
     "includeRef",
     "equipmentRef",
     "petsRef",
+    "securityRef",
   ].map(() => useRef(null));
 
   const reducer = (state, action) => {
@@ -119,6 +131,7 @@ function App() {
       includeRef: includeRef,
       equipmentRef: equipmentRef,
       petsRef: petsRef,
+      securityRef: securityRef
     };
     const targetRef = refMap[props];
     if (targetRef) {
@@ -127,6 +140,7 @@ function App() {
   }
 
   const handleLastCard = () => {
+    alert("סוף הטופס.. מפה צריך לייצא")
     console.log("LAST");
   };
   function handleNext() {
@@ -549,6 +563,67 @@ function App() {
               השוטפים. המשכיר יהיה רשאי לעשות שימוש בהמחאות אלו לפירעון התשלומים
               השוטפים, במידה והשוכר לא מילא את התחייבותיו לתשלומם.
             </Typography>
+            <div ref={securityRef} />
+            <Typography variant="body2" mb={2}>
+              9.2 להבטחת מילוי התחייבויות השוכר על פי הסכם זה, יפקיד השוכר בידי
+              המשכיר בסמוך לאחר מועד חתימה הסכם זה ולא יאוחר ממועד הכניסה לדירה
+              את הבטוחות הבאות:
+            </Typography>
+            {state.card4Switch1 && (
+              <Typography variant="body2" mb={2}>
+                <mark>
+                  המחאה על סך {formatNumberWithCommas(state.card4Input1)}
+                </mark>{" "}
+                ש"ח חתומה על ידי <mark>{state.card4SignBy}</mark>. ככל שבתום
+                תקופת השכירות מילא השוכר אחר כל התחייבויותיו על פי הסכם זה,
+                יחזיר המשכיר לשוכר את ההמחאות או ישמיד אותן, בהתאם להסכמת
+                הצדדים, וזאת לא יאוחר משלושים (30) ימים מתום תקופת ההסכם.
+              </Typography>
+            )}
+            {state.card4Switch2 && (
+              <Typography variant="body2" mb={2}>
+                <mark>
+                  ערבות בנקאית, בסך {formatNumberWithCommas(state.card4Input2)}
+                </mark>{" "}
+                ש"ח, ככל שבתום תקופת השכירות מילא השוכר אחר כל התחייבויותיו לפי
+                הסכם זה, יחזיר המשכיר לשוכר את הערבות, לא יאוחר משלושים (30)
+                ימים מתום תקופת ההסכם
+              </Typography>
+            )}
+            {state.card4Switch3 && (
+              <Typography variant="body2" mb={2}>
+                <mark>
+                  פיקדון בסך {formatNumberWithCommas(state.card4Input3)}
+                </mark>{" "}
+                ש"ח, שיופקד בפק"מ בחשבון הבנק של המשכיר אשר פרטיו יועברו על ידי
+                המשכיר. ככל שבתום תקופת השכירות מילא השוכר אחר כל התחייבויותיו
+                על פי הסכם זה, יחזיר המשכיר לשוכר את ההמחאות או ישמיד אותן,
+                בהתאם להסכמת הצדדים, וזאת לא יאוחר משלושים (30) ימים מתום תקופת
+                ההסכם
+              </Typography>
+            )}
+            {state.card4Switch4 && (
+              <Typography variant="body2" mb={2}>
+                <mark>
+                  שטר חוב בסך {formatNumberWithCommas(state.card4Input4)}
+                </mark>{" "}
+                ש"ח, חתום על ידי השוכר וערב מטעמו. ככל שבתום תקופת השכירות מילא
+                השוכר אחר כל התחייבויותיו על פי הסכם זה, יחזיר המשכיר לשוכר את
+                שטר החוב או ישמיד אותו, בהתאם להסכמת הצדדים, וזאת לא יאוחר
+                משלושים (30) ימים מתום תקופת ההסכם.
+              </Typography>
+            )}
+            {state.card4Switch5 && (
+              <Typography variant="body2" mb={2}>
+                <mark>
+                  צ'ק בנקאי, על סך {formatNumberWithCommas(state.card4Input5)}
+                </mark>{" "}
+                ש"ח, ככל שבתום תקופת השכירות מילא השוכר אחר כל התחייבויותיו לפי
+                הסכם זה, יחזיר המשכיר לשוכר את הצ'ק הבנקאי, לא יאוחר משלושים
+                (30) ימים מתום תקופת ההסכם
+              </Typography>
+            )}
+
             <Typography variant="body2" mb={2}>
               <strong>10. אחריות</strong>
             </Typography>
@@ -641,64 +716,6 @@ function App() {
               המשכיר
             </Typography>
           </div>
-
-          <Typography variant="body2" mb={2}>
-            <strong></strong>
-          </Typography>
-          <Typography variant="body2"></Typography>
-
-          <Typography variant="body2">XXX</Typography>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
-            architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
-            molestiae labore enim corporis. Necessitatibus autem quam culpa
-            optio quos?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
-            architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
-            molestiae labore enim corporis. Necessitatibus autem quam culpa
-            optio quos?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
-            architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
-            molestiae labore enim corporis. Necessitatibus autem quam culpa
-            optio quos?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
-            architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
-            molestiae labore enim corporis. Necessitatibus autem quam culpa
-            optio quos?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
-            architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
-            molestiae labore enim corporis. Necessitatibus autem quam culpa
-            optio quos?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
-            architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
-            molestiae labore enim corporis. Necessitatibus autem quam culpa
-            optio quos?
-          </p>
-          <div>
-            <p>HI</p>
-          </div>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
-            architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
-            molestiae labore enim corporis. Necessitatibus autem quam culpa
-            optio quos?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
-            architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
-            molestiae labore enim corporis. Necessitatibus autem quam culpa
-            optio quos?
-          </p>
         </div>
       </div>
     </CardContext.Provider>
