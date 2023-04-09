@@ -46,18 +46,25 @@ const initialState = {
     vaad: false,
     tv: false,
   },
+  //card4 --
   card5Input1: "",
   card5Input2: "",
   card5Input3: "",
+
+  card6Switch1: false,
+  card6Switch2: false,
+  card6Switch3: false,
+  card6Switch4: false,
 };
 
 function App() {
-  const [dateRef, optionRef, rentRef, includeRef, equipmentRef] = [
+  const [dateRef, optionRef, rentRef, includeRef, equipmentRef, petsRef] = [
     "dateRef",
     "optionRef",
     "rentRef",
     "includeRef",
     "equipmentRef",
+    "petsRef",
   ].map(() => useRef(null));
 
   const reducer = (state, action) => {
@@ -104,6 +111,7 @@ function App() {
       rentRef: rentRef,
       includeRef: includeRef,
       equipmentRef: equipmentRef,
+      petsRef: petsRef,
     };
     const targetRef = refMap[props];
     if (targetRef) {
@@ -375,33 +383,28 @@ function App() {
             </Typography>
             {state.card5Input2 && (
               <Typography variant="body2">
-                <mark>
-                  5.3 ידוע למשכיר ולשוכר כי במועד החתימה על הסכם זה קיימים בדירה
-                  הליקויים והפגמים המפורטים להלן, ומוסכם על הצדדים כי הם יתוקנו
-                  על ידי המשכיר במהלך תקופה של ארבעה עשר (14) יום מיום תחילת
-                  השכירות: {state.card5Input2}
-                </mark>
+                5.3 ידוע למשכיר ולשוכר כי במועד החתימה על הסכם זה קיימים בדירה
+                הליקויים והפגמים המפורטים להלן, ומוסכם על הצדדים כי הם יתוקנו על
+                ידי המשכיר במהלך תקופה של ארבעה עשר (14) יום מיום תחילת השכירות:{" "}
+                <mark> {state.card5Input2}</mark>
               </Typography>
             )}
             {state.card5Input3 && (
               <Typography variant="body2">
-                <mark>
-                  5.4 ידוע למשכיר ולשוכר כי במועד החתימה על הסכם זה קיימים בדירה
-                  הליקויים והפגמים המפורטים להלן, ומוסכם על הצדדים כי המשכיר לא
-                  מתחייב לתקנם: {state.card5Input3}
-                </mark>
+                5.4 ידוע למשכיר ולשוכר כי במועד החתימה על הסכם זה קיימים בדירה
+                הליקויים והפגמים המפורטים להלן, ומוסכם על הצדדים כי המשכיר לא
+                מתחייב לתקנם: <mark> {state.card5Input3}</mark>
               </Typography>
             )}
             {state.card5Input1 && (
               <Typography variant="body2">
-                <mark>
-                  5.5 הצדדים מאשרים כי עם מסירת החזקה בדירה לשוכר, תכולת הדירה
-                  תכלול את הפריטים ואת הציוד שלהלן ("הציוד"), והשוכר מתחייב לא
-                  להוציאם מהדירה או למסור אותם לאחרים ולבצע בהם שימוש סביר ולא
-                  להסב להם נזק מלבד בלאי סביר: {state.card5Input1}
-                </mark>
+                5.5 הצדדים מאשרים כי עם מסירת החזקה בדירה לשוכר, תכולת הדירה
+                תכלול את הפריטים ואת הציוד שלהלן ("הציוד"), והשוכר מתחייב לא
+                להוציאם מהדירה או למסור אותם לאחרים ולבצע בהם שימוש סביר ולא
+                להסב להם נזק מלבד בלאי סביר: <mark> {state.card5Input1}</mark>
               </Typography>
             )}
+            <div ref={petsRef}/>
             <Typography variant="body2">
               <strong>6. השימוש בדירה</strong>
             </Typography>
@@ -422,6 +425,33 @@ function App() {
               בדירה, או בכל חלק ממנה, כל שימוש אשר יכול לגרום נזק, הטרדה או רעש
               בלתי סבירים, וכן יציית וימלא בדייקנות את כל הוראות החוק, הוראות כל
               רשות מוסמכת והוראות ועד הבית.
+            </Typography>
+            {state.card6Switch3 && (
+              <Typography variant="body2">
+                <mark>
+                  כמו כן מוסכם על הצדדים כי חוזה זה אינו יחול על החניה והיא לא
+                  תחשב כחלק ממתקני הדירה שמוקצים לשימוש הושכר.
+                </mark>
+              </Typography>
+            )}
+            {state.card6Switch4 && (
+              <Typography variant="body2">
+                <mark>
+                כמו כן מוסכם על הצדדים כי חוזה זה אינו יחול על המחסן והיא לא תחשב כחלק ממתקני הדירה שמוקצים לשימוש הושכר.
+                </mark>
+              </Typography>
+            )}
+            <Typography variant="body2">
+              6.4{" "}
+              {!state.card6Switch1 ? (
+                "השוכר מתחייב שלא להכניס בעלי חיים לדירה."
+              ) : (
+                <mark>
+                  מוסכם כי השוכר יהיה רשאי להחזיק בדירה חיית מחמד, בכפוך לכך
+                  שהשוכר מאשר כי האמור בסעיף 6.3 לעיל יחול ויחייב אותו גם בכל
+                  הקשור להחזקת חיית המחמד.
+                </mark>
+              )}
             </Typography>
 
             <Typography variant="body2">
@@ -468,6 +498,16 @@ function App() {
               כשהיא פנויה וחופשייה מכל אדם וחפץ השייך לשוכר, במצב טוב ותקין,
               נקיה ומסודרת כפי שנמסרה לו.
             </Typography>
+            {state.card6Switch2 && (
+              <Typography variant="body2">
+                <mark>
+                  מוסכם, כי במקרה שהדירה נצבעה לפני תחילת תקופת השכירות, השוכר
+                  ידאג לצבוע, על חשבונו, את הדירה ברמה טובה ומספקת. במעמד פינוי
+                  הדירה, הצדדים יערכו פרוטוקול מסירת דירה אשר יהווה אסמכתא לכך
+                  שהשוכר קיים את התחייבויותיו וכי למשכיר אין טענות כלפיו.
+                </mark>
+              </Typography>
+            )}
             <Typography variant="body2">
               <strong>9. בטחונות</strong>
             </Typography>

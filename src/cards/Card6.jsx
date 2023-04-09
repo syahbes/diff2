@@ -1,7 +1,66 @@
-const Card6 = () => {
-  return (
-    <div>חיות מחמד - צביעת דירה</div>
-  )
-}
+import React, { useContext, useEffect } from "react";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import avatrImage from "../assets/1.jpg";
+import { Switch, TextField } from "@mui/material";
+import { CardContext } from "../context";
 
-export default Card6
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+import { prefixer } from "stylis";
+
+//ltr
+const cacheLtr = createCache({
+  key: "muiltr",
+  stylisPlugins: [prefixer],
+});
+
+const Card6 = () => {
+  useEffect(() => {
+    dispatch({ type: "SCROLL_INTO", payload: "petsRef" });
+  }, []);
+
+  const { state, dispatch } = useContext(CardContext);
+
+  const handleSwitch = (event) => {
+    dispatch({
+      type: "SET_INPUT_VALUE",
+      payload: { name: event.target.id, value: event.target.checked },
+    });
+  };
+
+  const CustomSwitch = ({ id , text}) => {
+    const checked = state[`card6Switch${id}`];
+    return (
+      <div className="extOption">
+        <Typography variant="body1" marginRight={5}>{text}</Typography>
+        <Typography variant="body1">כן</Typography>
+        <CacheProvider value={cacheLtr}>
+          <Switch
+            id={`card6Switch${id}`}
+            checked={checked}
+            onChange={handleSwitch}
+          />
+        </CacheProvider>
+        <Typography variant="body1">לא</Typography>
+      </div>
+    );
+  };
+
+  return (
+    <div className="card-container">
+      <div className="centered-col">
+        <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
+        <Typography variant="subtitle1">
+          אוטוטו מסיימים, אבל לא לפני שנדבר על כמה כללי אצבע להתנהלות בנכס שלך
+        </Typography>
+        <CustomSwitch id={1} text={"ניתן להחזיק חיות מחמד בדירה?"}/>
+        <CustomSwitch id={2} text={"צביעת הדירה בסיום החוזה?"}/>
+        <CustomSwitch id={3} text={"החרגת חניה מהחוזה?"}/>
+        <CustomSwitch id={4} text={"החרגת מחסן מהחוזה?"}/>
+      </div>
+    </div>
+  );
+};
+
+export default Card6;
