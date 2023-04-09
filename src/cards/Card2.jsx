@@ -101,8 +101,8 @@ function Card2() {
     <div className="card-container">
       <div className="centered-col">
         <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
-        <Typography variant="subtitle1">אחלה מיקום,</Typography>
-        <Typography variant="subtitle1">ומה תקופת השכירות?</Typography>
+        <Typography variant="h6">אחלה מיקום,</Typography>
+        <Typography variant="h6">ומה תקופת השכירות?</Typography>
       </div>
       <div className="dates-div">
         <Typography variant="body1">תאריך כניסה</Typography>

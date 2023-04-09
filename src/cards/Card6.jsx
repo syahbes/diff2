@@ -29,20 +29,22 @@ const Card6 = () => {
     });
   };
 
-  const CustomSwitch = ({ id , text}) => {
+  const CustomSwitch = ({ id, text }) => {
     const checked = state[`card6Switch${id}`];
     return (
-      <div className="extOption">
-        <Typography variant="body1" marginRight={5}>{text}</Typography>
-        <Typography variant="body1">כן</Typography>
-        <CacheProvider value={cacheLtr}>
-          <Switch
-            id={`card6Switch${id}`}
-            checked={checked}
-            onChange={handleSwitch}
-          />
-        </CacheProvider>
-        <Typography variant="body1">לא</Typography>
+      <div className="switchesContainer">
+        <Typography variant="body1">{text}</Typography>
+        <div className="switches">
+          <Typography variant="body1">כן</Typography>
+          <CacheProvider value={cacheLtr}>
+            <Switch
+              id={`card6Switch${id}`}
+              checked={checked}
+              onChange={handleSwitch}
+            />
+          </CacheProvider>
+          <Typography variant="body1">לא</Typography>
+        </div>
       </div>
     );
   };
@@ -51,13 +53,16 @@ const Card6 = () => {
     <div className="card-container">
       <div className="centered-col">
         <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
-        <Typography variant="subtitle1">
+        <Typography variant="h6">
           אוטוטו מסיימים, אבל לא לפני שנדבר על כמה כללי אצבע להתנהלות בנכס שלך
         </Typography>
-        <CustomSwitch id={1} text={"ניתן להחזיק חיות מחמד בדירה?"}/>
-        <CustomSwitch id={2} text={"צביעת הדירה בסיום החוזה?"}/>
-        <CustomSwitch id={3} text={"החרגת חניה מהחוזה?"}/>
-        <CustomSwitch id={4} text={"החרגת מחסן מהחוזה?"}/>
+
+        <div className="switches-container">
+          <CustomSwitch id={1} text={"ניתן להחזיק חיות מחמד בדירה?"} />
+          <CustomSwitch id={2} text={"צביעת הדירה בסיום החוזה?"} />
+          <CustomSwitch id={3} text={"החרגת חניה מהחוזה?"} />
+          <CustomSwitch id={4} text={"החרגת מחסן מהחוזה?"} />
+        </div>
       </div>
     </div>
   );

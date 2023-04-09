@@ -23,8 +23,8 @@ const Card5 = () => {
     <div className="card-container">
       <div className="centered-col">
         <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
-        <Typography variant="subtitle1">הסוד הוא בפרטים הקטנים.</Typography>
-        <Typography variant="subtitle1">
+        <Typography variant="h6">הסוד הוא בפרטים הקטנים.</Typography>
+        <Typography variant="h6">
           איזו תכולה נשארת בדירה שלך ואיזו ליקויים קיימים בה?
         </Typography>
 

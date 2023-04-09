@@ -68,7 +68,7 @@ function Card3() {
     }
   };
   const handleCheck = (e) => {
-   
+
     // console.log("dispatching",e.target.id, e.target.checked);
     dispatch({
       type: "SET_CHECK_VALUE",
@@ -101,7 +101,7 @@ function Card3() {
     <div className="card-container">
       <div className="centered-col">
         <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
-        <Typography variant="subtitle1">
+        <Typography variant="h6">
           נשמע טוב, אז כמה עולה התענוג?
         </Typography>
       </div>
@@ -135,7 +135,7 @@ function Card3() {
               labelId="numofRent-label"
               value={state.card3Input2}
               onChange={handleSelect}
-             
+
             >
               <MenuItem value="1">1</MenuItem>
               <MenuItem value="2">2</MenuItem>

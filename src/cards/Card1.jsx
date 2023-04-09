@@ -20,10 +20,10 @@ function Card1() {
     <div className="card-container">
       <div className="centered-col">
         <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
-        <Typography variant="subtitle1">
+        <Typography variant="h6">
           אני אלווה אותך בבניית החוזה.
         </Typography>
-        <Typography variant="subtitle1">מה כתובת הנכס המושכר?</Typography>
+        <Typography variant="h6">מה כתובת הנכס המושכר?</Typography>
       </div>
 
       <div className="input-stack">

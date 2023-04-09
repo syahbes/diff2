@@ -46,7 +46,7 @@ const initialState = {
     vaad: false,
     tv: false,
   },
-  //card4 --
+  //card4 -placeholder-
   card5Input1: "",
   card5Input2: "",
   card5Input3: "",
@@ -55,6 +55,13 @@ const initialState = {
   card6Switch2: false,
   card6Switch3: false,
   card6Switch4: false,
+
+  card7Switch1: false,
+  card7Switch2: false,
+  card7Input3: "",
+  card7Switch4: false,
+  card7Switch5: false,
+  card7Input6: "",
 };
 
 function App() {
@@ -197,7 +204,7 @@ function App() {
           </div>
           <div style={{ width: "100%" }}>
             <div ref={dateRef} />
-            <Typography variant="body2" gutterBottom>
+            <Typography variant="body2" mb={2}>
               <strong>1. תקופת השכירות וסיומה</strong>
             </Typography>
             <Typography variant="body2" mb={2}>
@@ -229,7 +236,7 @@ function App() {
             </Typography>
 
             <div ref={rentRef} />
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               <strong>2. דמי השכירות</strong>
             </Typography>
 
@@ -274,7 +281,7 @@ function App() {
             </Typography>
 
             <div ref={optionRef} />
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               <strong>3. תקופת האופציה</strong>
             </Typography>
 
@@ -303,7 +310,7 @@ function App() {
               </>
             )}
 
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               <strong>4. מיסים ותשלומים אחרים</strong>
             </Typography>
             <Typography variant="body2" mb={2}>
@@ -354,10 +361,10 @@ function App() {
               </mark>
             </Typography>
             <div ref={equipmentRef} />
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               <strong> 5. מצב הדירה</strong>
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               5.1 המשכיר מצהיר בזאת כי הדירה ראויה למגורים, ועומדת, בין היתר,
               בתנאים הבאים: (א) בניית הדירה הושלמה; (ב) לשוכר יש ותהיה גישה
               חופשית לדירה לאורך כל תקופת השכירות; הדירה כוללת מטבח וחדר שירותים
@@ -368,7 +375,7 @@ function App() {
               זו הינה הוראה יסודית והפרתה תיחשב להפרה יסודית של הסכם זה על-ידי
               המשכיר.
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               5.2 השוכר מצהיר כי טרם החתימה על הסכם זה הוא ראה ובדק את הדירה,
               הבניין ותנאי סביבתם,
               {state.card5Input2 || state.card5Input3 ? (
@@ -382,7 +389,7 @@ function App() {
               לשימוש בדירה ולמעט פגמים שהמשכיר התחייב לתקן בהסכם זה.
             </Typography>
             {state.card5Input2 && (
-              <Typography variant="body2">
+              <Typography variant="body2" mb={2}>
                 5.3 ידוע למשכיר ולשוכר כי במועד החתימה על הסכם זה קיימים בדירה
                 הליקויים והפגמים המפורטים להלן, ומוסכם על הצדדים כי הם יתוקנו על
                 ידי המשכיר במהלך תקופה של ארבעה עשר (14) יום מיום תחילת השכירות:{" "}
@@ -390,36 +397,36 @@ function App() {
               </Typography>
             )}
             {state.card5Input3 && (
-              <Typography variant="body2">
+              <Typography variant="body2" mb={2}>
                 5.4 ידוע למשכיר ולשוכר כי במועד החתימה על הסכם זה קיימים בדירה
                 הליקויים והפגמים המפורטים להלן, ומוסכם על הצדדים כי המשכיר לא
                 מתחייב לתקנם: <mark> {state.card5Input3}</mark>
               </Typography>
             )}
             {state.card5Input1 && (
-              <Typography variant="body2">
+              <Typography variant="body2" mb={2}>
                 5.5 הצדדים מאשרים כי עם מסירת החזקה בדירה לשוכר, תכולת הדירה
                 תכלול את הפריטים ואת הציוד שלהלן ("הציוד"), והשוכר מתחייב לא
                 להוציאם מהדירה או למסור אותם לאחרים ולבצע בהם שימוש סביר ולא
                 להסב להם נזק מלבד בלאי סביר: <mark> {state.card5Input1}</mark>
               </Typography>
             )}
-            <div ref={petsRef}/>
-            <Typography variant="body2">
+            <div ref={petsRef} />
+            <Typography variant="body2" mb={2}>
               <strong>6. השימוש בדירה</strong>
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               6.1 השוכר מתחייב להשתמש בדירה לצרכי מגורים בלבד ולא לכל צורך אחר.
               השוכר מתחייב לא למסור, לשעבד או להעביר בכל דרך אחרת את זכויותיו
               לפי הסכם זה, או להרשות לאחרים להשתמש בדירה או בכל חלק ממנה, בתמורה
               או שלא בתמורה, ללא הסכמת המשכיר מראש ובכתב. הוראה זו הינה הוראה
               יסודית והפרתה תיחשב להפרה יסודית של השוכר.
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               6.2 על אף האמור בסעיף 6.1 לעיל השוכר יוכל להשכיר את הדירה בשכירות
               משנה ("סאבלט") רק לאחר קבלת הסכמה מפורשת בכתב מהמשכיר.
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               6.3 השוכר מתחייב להשתמש בדירה, על מערכותיה, מתקניה ותכולתה, באופן
               זהיר וסביר, ולשמור על ניקיונה ועל ניקיון הבניין. השוכר לא יעשה
               בדירה, או בכל חלק ממנה, כל שימוש אשר יכול לגרום נזק, הטרדה או רעש
@@ -427,7 +434,7 @@ function App() {
               רשות מוסמכת והוראות ועד הבית.
             </Typography>
             {state.card6Switch3 && (
-              <Typography variant="body2">
+              <Typography variant="body2" mb={2}>
                 <mark>
                   כמו כן מוסכם על הצדדים כי חוזה זה אינו יחול על החניה והיא לא
                   תחשב כחלק ממתקני הדירה שמוקצים לשימוש הושכר.
@@ -435,13 +442,14 @@ function App() {
               </Typography>
             )}
             {state.card6Switch4 && (
-              <Typography variant="body2">
+              <Typography variant="body2" mb={2}>
                 <mark>
-                כמו כן מוסכם על הצדדים כי חוזה זה אינו יחול על המחסן והיא לא תחשב כחלק ממתקני הדירה שמוקצים לשימוש הושכר.
+                  כמו כן מוסכם על הצדדים כי חוזה זה אינו יחול על המחסן והיא לא
+                  תחשב כחלק ממתקני הדירה שמוקצים לשימוש הושכר.
                 </mark>
               </Typography>
             )}
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               6.4{" "}
               {!state.card6Switch1 ? (
                 "השוכר מתחייב שלא להכניס בעלי חיים לדירה."
@@ -453,11 +461,34 @@ function App() {
                 </mark>
               )}
             </Typography>
+            <Typography variant="body2" mb={2}>
+              6.5 השוכר יאפשר למשכיר ולמי מטעמו להיכנס לדירה בזמנים סבירים,
+              בתיאום מראש עם המשכיר.
+            </Typography>
+            {state.card7Switch1 && (
+              <Typography variant="body2" mb={2}>
+                <mark>6.6 </mark> המשכיר מתחייב לעדכן את השוכר בכל שינוי\התקדמות
+                משמעותיים במסגרת תמ"א 38 או תוכנית פינוי-בינוי שהדירה עתידה
+                לעבור כגון: חתימה על הסכם עם יזם, קבלת היתר בניה, קבלת הודעת
+                פינוי וכו'. המשכיר מתחייב להודיע בכתב לשוכר עד 60 יום לפני תחילת
+                ביצוע העבודות מתוקף תוכניות אלו ולאפשר לשוכר במידה ויבחר להביא
+                חוזה זה לסיומו, לאף אחד מהצדדים לא תהיה טענה בדבר עניין זה.
+              </Typography>
+            )}
+            {state.card7Switch2 && state.card7Switch1 && (
+              <Typography variant="body2" mb={2}>
+                במידה ויבחר השוכר להמשיך ולשכור את הדירה מתוקף חוזה זה יופחת
+                שכ"ד המשולם על ידו ל-
+                <mark>{formatNumberWithCommas(state.card7Input3)}</mark>
+                ש"ח לחודש (במידה וישנם מספר שוכרים - תישמר יחסיות התשלום), למשך
+                תקופת הבנייה.
+              </Typography>
+            )}
 
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               <strong>7. נזקים וליקויים לדירה; שינויים בדירה</strong>
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               המשכיר יתקן, על חשבונו, כל נזק וקלקול שסיבתם בלאי סביר, תוך זמן
               סביר ולא יאוחר מארבע עשר (14) ימים מדרישת השוכר בכתב, ובמקרה של
               תקלה שאינה מאפשרת מגורים סבירים בדירה - באופן מידי, ולא יאוחר
@@ -473,7 +504,7 @@ function App() {
               עליו, יהיה רשאי הצד השני (אך לא חייב) לבצע בעצמו תיקונים אלו, על
               חשבון הצד השני.
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               7.2 השוכר מתחייב שלא לבצע שינויים או תוספות כלשהן במבנה הדירה ולא
               להוסיף לדירה כל מבנה, תוספת או שיכלול, או להסיר כל חלק מהדירה, ללא
               הסכמת המשכיר בכתב ומראש. מבלי לגרוע מזכות המשכיר לסעד אחר, במקרה
@@ -483,15 +514,15 @@ function App() {
               במקרה שהשוכר לא החזיר את מצב הדירה לקדמותו בניגוד להוראות סעיף זה,
               יהיה רשאי המשכיר (אך לא חייב) לעשות כן, על חשבון השוכר.
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               <strong>8. מסירת הדירה ופינויה</strong>
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               8.1 המשכיר מתחייב למסור את הדירה לשוכר, בתחילת תקופת השכירות,
               כשהיא פנויה וחופשייה מכל אדם וחפץ (למעט אלו המוזכרים בהסכם), במצב
               טוב ותקין, נקייה ומסודרת.
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               8.2 במועד תום תקופת השכירות או בכל מועד בו תבוא השכירות לסיומה על
               פי הוראות הסכם זה (לרבות לפי סעיפים 1.2 ו-1.3 לעיל) לפי המוקדם,
               יפנה השוכר את הדירה וימסור אותה בחזרה למשכיר או למי שיורה המשכיר,
@@ -499,7 +530,7 @@ function App() {
               נקיה ומסודרת כפי שנמסרה לו.
             </Typography>
             {state.card6Switch2 && (
-              <Typography variant="body2">
+              <Typography variant="body2" mb={2}>
                 <mark>
                   מוסכם, כי במקרה שהדירה נצבעה לפני תחילת תקופת השכירות, השוכר
                   ידאג לצבוע, על חשבונו, את הדירה ברמה טובה ומספקת. במעמד פינוי
@@ -508,18 +539,115 @@ function App() {
                 </mark>
               </Typography>
             )}
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               <strong>9. בטחונות</strong>
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" mb={2}>
               9.1 השוכר יפקיד בידי המשכיר בסמוך לאחר מועד חתימת הסכם זה ולא
               יאוחר ממועד הכניסה לדירה, המחאות חתומות ללא סכום ותאריך לפקודות
               השירותים המצוינים בסעיף 4.1, אשר תשמשנה כביטחון לתשלום התשלומים
               השוטפים. המשכיר יהיה רשאי לעשות שימוש בהמחאות אלו לפירעון התשלומים
               השוטפים, במידה והשוכר לא מילא את התחייבותיו לתשלומם.
             </Typography>
-            <Typography variant="body2">XXX</Typography>
+            <Typography variant="body2" mb={2}>
+              <strong>10. אחריות</strong>
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              10.1 בכפוף להוראות כל דין, השוכר אחראי כלפי המשכיר וכלפי כל צד
+              שלישי שהוא לכל נזק, דרישה או עילת תביעה מכל מין וסוג שהוא, לרבות
+              נזק לגוף או לרכוש, שיגרם בקשר עם השימוש בדירה על ידי השוכר. השוכר
+              יפצה את המשכיר וישפה אותו בגין כל נזק או הוצאה, לרבות הוצאות משפט,
+              שייגרמו למשכיר בשל תביעה שתוגש נגד המשכיר, ככל שהתביעה נובעת מאי
+              מילוי או הפרה של התחייבויות השוכר לפי הסכם זה או הוראות כל דין.
+            </Typography>
+            {state.card7Switch4 && (
+              <Typography variant="body2" mb={2}>
+                <mark>10.2</mark> מובהר ומוסכם על הצדדים, כי כחלק מהמחויבויות
+                החלות על הצדדים מתוקף חוזה זה, מתחייב המשכיר לערוך ביטוח נכס
+                שכולל סעיף צד ג' ואילו השוכר מתחייב לערוך ביטוח תכולה שכולל סעיף
+                צד ג'. אין בעריכת ביטוחים אלו לקיחת אחריות לנזקיו של הצד השני.{" "}
+              </Typography>
+            )}
+            <Typography variant="body2" mb={2}>
+              <strong>11. כללי</strong>
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              11.1 כתובות הצדדים לצרכי הסכם זה הם כמפורט במבוא או כל כתובת אחרת
+              עליה יודיעו הצדדים. כל הודעה ששלח צד להסכם תיחשב כאילו הגיעה לצד
+              השני תוך שלושה (3) ימי עסקים - אם שוגרה בדואר רשום; בעת מסירתה
+              ובלבד שנתקבל אישור קבלה בהודעה חוזרת - אם נשלחה בדואר-אלקטרוני.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              11.2 במקרה שלפי הסכם זה הדירה מושכרת למספר שוכרים, יחולו על כל אחד
+              מהם כל הוראות הסכם זה, וכולם יחדיו יחשבו כ"שוכר".
+            </Typography>
+
+            {state.card7Input6 && (
+              <Typography variant="body2" mb={2}>
+                11.3 <mark> {state.card7Input6}</mark>
+              </Typography>
+            )}
+
+            <Typography variant="body2" mb={2}>
+              <strong>12. שונות</strong>
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              12.1 המבוא להסכם זה מהווה חלק בלתי נפרד ממנו.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              12.2 על הסכם זה ועל הדירה לא יחולו הוראות חוק הגנת הדיר (נוסח
+              משולב) תשל"ב - 1972 (להלן "חוק הגנת הדייר"), התקנות מתוקפו או כל
+              חוק או תקנה שיבואו במקומם, והשוכר מוותר בזאת על כל טענה, דרישה או
+              עילת תביעה מכוחם. הצדדים מאשרים כי הושכר לא שילם כל תשלום כדמי
+              מפתח עבור הדירה, לא השתתף ולא ישתתף בחלק כלשהו בהוצאות הבניה של
+              הדירה, וכי הסכם זה אינו יוצר ולא יצור יחסים המקנים זכות כלשהי
+              לקבלת דמי מפתח לפי חוק הגנת הדייר או כל חוק אחר שיבוא במקומו.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              12.3 המשכיר רשאי להעביר לאחר את זכויותיו בדירה, כולן או חלקן, ללא
+              צורך בהסכמת השוכר, ובלבד שיודיע על כך לשוכר בסמוך לאחר ביצוע העברת
+              הזכויות (לרבות מסירת פרטי הנעבר לשוכר) ובתנאי שלא יפגעו זכויות
+              השוכר על פי הסכם זה עקב העברת הזכויות.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              12.4 אם יקבע כי הוראה מהוראות ההסכם אינה בלתי אכיפה או בטלה מסיבה
+              כלשהי לא יהיה בכך כדי לפגוע ביתר הוראותיו של ההסכם, והצדדים יפעלו
+              על מנת ליישם את ההסכם כרוחו וכלשונו, לרבות החלפת ההוראה הבלתי
+              אכיפה או בטלה כאמור בהוראה חלופית שתוצאה ופעולתה זהות בעיקרן.{" "}
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              12.5 הסכם זה קובע באופן בלעדי את תנאי ההתקשרות בין הצדדים ולא
+              יחולו עליהם הסכמים או הסדרים אחרים, מכל סוג, שבוצעו בעל פה. כל
+              שינוי, ויתור או מתן ארכה לא יהיה להם תוקף אלא אם נערכו בכתב ונחתמו
+              על-ידי צדדים. ויתר צד להסכם על קיום הוראה מהוראות הסכם זה, יהא
+              ויתור זה חד פעמי ולא יהווה תקדים לוויתור על קיום כל הוראה שהיא.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              12.6 הצדדים מאשרים כי הסכם זה ייחתם בחתימה אלקטרונית, באמצעות אתר
+              Diffe-rent.co.il וכי עותקים חתומים שלו יוחזקו על ידי כל אחד
+              מהצדדים.
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              12.7 על הסכם זה יחולו דיני מדינת ישראל. סמכות השיפוט הייחודית
+              והבלעדית בכל מחלוקת שתתעורר בין הצדדים תהא נתונה לבית המשפט המוסמך
+              במחוז השיפוט שבה ממוקמת הדירה.
+            </Typography>
           </div>
+          <div className="sectionA">
+            <Typography variant="body2" mb={2}>
+              ולראייה באו הצדדים על החתום:
+            </Typography>
+            <Typography variant="body2" mb={2}>
+              המשכיר
+            </Typography>
+          </div>
+
+          <Typography variant="body2" mb={2}>
+            <strong></strong>
+          </Typography>
+          <Typography variant="body2"></Typography>
+
+          <Typography variant="body2">XXX</Typography>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo ipsum
             architecto odio illo ut laboriosam ex nemo eum, adipisci sunt
