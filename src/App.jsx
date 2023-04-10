@@ -1,5 +1,14 @@
 import React, { useState, useReducer, useRef } from "react";
-import { Card1, Card2, Card3, Card4, Card5, Card6, Card7 } from "./cards/cards";
+import {
+  Card1,
+  Card2,
+  Card3,
+  Card4,
+  Card5,
+  Card6,
+  Card7,
+  Card8,
+} from "./cards/cards";
 
 import { CardContext } from "./context";
 import "./App.css";
@@ -18,6 +27,7 @@ const cards = [
   <Card5 />,
   <Card6 />,
   <Card7 />,
+  <Card8 />,
 ];
 
 const initialState = {
@@ -76,7 +86,16 @@ const initialState = {
 };
 
 function App() {
-  const [dateRef, optionRef, rentRef, includeRef, equipmentRef, petsRef, securityRef] = [
+  const [
+    dateRef,
+    optionRef,
+    rentRef,
+    includeRef,
+    equipmentRef,
+    petsRef,
+    securityRef,
+    section10Ref,
+  ] = [
     "dateRef",
     "optionRef",
     "rentRef",
@@ -84,6 +103,7 @@ function App() {
     "equipmentRef",
     "petsRef",
     "securityRef",
+    "section10Ref",
   ].map(() => useRef(null));
 
   const reducer = (state, action) => {
@@ -131,7 +151,8 @@ function App() {
       includeRef: includeRef,
       equipmentRef: equipmentRef,
       petsRef: petsRef,
-      securityRef: securityRef
+      securityRef: securityRef,
+      section10Ref: section10Ref,
     };
     const targetRef = refMap[props];
     if (targetRef) {
@@ -140,7 +161,7 @@ function App() {
   }
 
   const handleLastCard = () => {
-    alert("סוף הטופס.. מפה צריך לייצא")
+    alert("סוף הטופס.. מפה צריך לייצא");
     console.log("LAST");
   };
   function handleNext() {
@@ -165,6 +186,7 @@ function App() {
         {/* cards */}
         <div className="cards-container">
           {cards[currentCard]}
+
           <div className="btn-group">
             <Button
               variant="outlined"
@@ -182,6 +204,7 @@ function App() {
             </Button>
           </div>
         </div>
+
         {/* display */}
         <div className="display-container">
           <div className="sectionA">
@@ -623,7 +646,7 @@ function App() {
                 (30) ימים מתום תקופת ההסכם
               </Typography>
             )}
-
+            <div ref={section10Ref} />
             <Typography variant="body2" mb={2}>
               <strong>10. אחריות</strong>
             </Typography>

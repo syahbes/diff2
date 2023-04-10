@@ -29,6 +29,7 @@ function Card1() {
       <div className="input-stack">
         <TextField
           id="card1Input1"
+          value={state.card1Input1}
           label="עיר"
           variant="standard"
           size="small"
@@ -36,6 +37,7 @@ function Card1() {
         />
         <TextField
           id="card1Input2"
+          value={state.card1Input2}
           label="רחוב"
           variant="standard"
           size="small"
@@ -46,6 +48,7 @@ function Card1() {
       <div className="input-stack">
         <TextField
           id="card1Input3"
+          value={state.card1Input3}
           label="בית"
           variant="standard"
           size="small"
@@ -54,6 +57,7 @@ function Card1() {
         />
         <TextField
           id="card1Input4"
+          value={state.card1Input4}
           label="דירה"
           variant="standard"
           size="small"
@@ -63,6 +67,7 @@ function Card1() {
       </div>
       <TextField
         id="card1Input5"
+        value={state.card1Input5}
         label="חדרים"
         variant="standard"
         size="small"

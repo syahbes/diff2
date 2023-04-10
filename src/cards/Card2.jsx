@@ -111,6 +111,7 @@ function Card2() {
           id="card2Input1"
           onChange={handleCardInputChange}
           className="inputDate"
+          value={reverseDate(state.card2Input1)}
         />
       </div>
       <div className="dates-div">
@@ -119,8 +120,10 @@ function Card2() {
           type="date"
           id="card2Input2"
           onChange={handleCardInputChange}
-          value={exitDate}
+          value={reverseDate(state.card2Input2)}
+          // value={exitDate}
           className="inputDate"
+
         />
       </div>
       <div className="extOptionContainer">

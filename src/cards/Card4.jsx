@@ -92,6 +92,7 @@ const Card4 = () => {
               <TextField
                 fullWidth
                 id={"card4Input1"}
+                value={state.card4Input1}
                 label="על סך"
                 variant="standard"
                 size="small"
@@ -145,6 +146,7 @@ const Card4 = () => {
                     <TextField
                       fullWidth
                       id={inputNum}
+                      value={state[inputNum]}
                       label="על סך"
                       variant="standard"
                       size="small"

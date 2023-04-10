@@ -22,6 +22,10 @@ const Card7 = () => {
   const { state, dispatch } = useContext(CardContext);
 
   const handleSwitch = (event) => {
+    if (event.target.id == "card7Switch4") {
+      dispatch({ type: "SCROLL_INTO", payload: "section10Ref" });
+    }
+
     dispatch({
       type: "SET_INPUT_VALUE",
       payload: { name: event.target.id, value: event.target.checked },
@@ -58,7 +62,7 @@ const Card7 = () => {
     <div className="card-container">
       <div className="centered-col">
         <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
-        <Typography variant="subtitle1">
+        <Typography variant="h6">
           יופי, רוצה להתייחס לאחת מהאפשרויות הבאות?
         </Typography>
         <div className="switches-container">
@@ -78,6 +82,7 @@ const Card7 = () => {
               <TextField
                 fullWidth
                 id="card7Input3"
+                value={state.card7Input3}
                 label="הכנס סכום שכר דירה מופחת"
                 variant="standard"
                 size="small"
@@ -92,6 +97,7 @@ const Card7 = () => {
             <TextField
               fullWidth
               id="card7Input6"
+              value={state.card7Input6}
               label="לדוגמא: אסור לשוכרים לקדוח בקרמיקה"
               variant="standard"
               size="small"

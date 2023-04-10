@@ -10,7 +10,7 @@ const Card5 = () => {
     dispatch({ type: "SCROLL_INTO", payload: "equipmentRef" });
   }, []);
 
-  const { dispatch } = useContext(CardContext);
+  const { state, dispatch } = useContext(CardContext);
 
   const handleCard5InputChange = (e) => {
     dispatch({
@@ -31,6 +31,7 @@ const Card5 = () => {
         <TextField
           fullWidth
           id="card5Input1"
+          value={state.card5Input1}
           label="דברים שנשארים בדירה"
           variant="standard"
           size="small"
@@ -41,6 +42,7 @@ const Card5 = () => {
           fullWidth
           sx={{ marginTop: "20px" }}
           id="card5Input2"
+          value={state.card5Input2}
           label="ליקויים לתיקון תוך 14 יום"
           variant="standard"
           size="small"
@@ -50,6 +52,7 @@ const Card5 = () => {
           fullWidth
           sx={{ marginTop: "20px", marginBottom: "20px" }}
           id="card5Input3"
+          value={state.card5Input3}
           label="ליקויים קבועים בדירה"
           variant="standard"
           size="small"

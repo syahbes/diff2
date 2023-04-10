@@ -115,6 +115,7 @@ function Card3() {
       >
         <TextField
           id="card3Input1"
+          value={state.card3Input1}
           label="הכנס סכום שכירות כולל"
           variant="standard"
           size="small"
