@@ -11,10 +11,9 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-import DocxPage from "./DocxPage";
+import DocxPage from "./generateDocx";
 
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const theme = createTheme({
   direction: "rtl",
@@ -29,13 +28,15 @@ const cacheRtl = createCache({
 ReactDOM.createRoot(document.getElementById("root")).render(
   <CacheProvider value={cacheRtl}>
     <ThemeProvider theme={theme}>
-    <Router>
-        <Routes>
-          <Route path="/*" element={<App />} />
-          <Route path="/docx" element={<DocxPage />} />
-        </Routes>
-      </Router>
-      {/* <DocxPage/> */}
+      <App />
     </ThemeProvider>
   </CacheProvider>
 );
+
+// <Router>
+//   <Routes>
+//     <Route path="/*" element={<App />} />
+//     <Route path="/docx" element={<DocxPage />} />
+//   </Routes>
+// </Router>
+//<DocxPage/>

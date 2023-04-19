@@ -15,14 +15,14 @@ const cacheLtr = createCache({
   stylisPlugins: [prefixer],
 });
 
-const Card8 = () => {
+const Card9 = () => {
   const { state, dispatch } = useContext(CardContext);
 
   useEffect(() => {
     dispatch({ type: "SCROLL_INTO", payload: "card8Ref" });
   }, []);
 
-  const handleCard8InputChange = (event) => {
+  const handleCard9InputChange = (event) => {
     dispatch({
       type: "SET_INPUT_VALUE",
       payload: { name: event.target.id, value: event.target.value },
@@ -36,34 +36,34 @@ const Card8 = () => {
         <Typography variant="h6">שלב אחרון - הזנת פרטים</Typography>
         <TextField
           fullWidth
-          id="card8Input1"
-          label="שם בעל הנכס"
+          id="card9Input1"
+          label="שם השוכר.ת"
           variant="standard"
           size="small"
-          value={state.card8Input1}
-          onChange={handleCard8InputChange}
+          value={state.card9Input1}
+          onChange={handleCard9InputChange}
         />
         <TextField
           fullWidth
-          id="card8Input2"
-          label="מייל בעל הנכס"
+          id="card9Input2"
+          label="מייל השוכר.ת"
           variant="standard"
           size="small"
-          value={state.card8Input2}
-          onChange={handleCard8InputChange}
+          value={state.card9Input2}
+          onChange={handleCard9InputChange}
         />
         <TextField
           fullWidth
-          id="card8Input3"
-          label="תעודת זהות בעל הנכס"
+          id="card9Input3"
+          label="תעודת זהות השוכר.ת"
           variant="standard"
           size="small"
           type="number"
-          value={state.card8Input3}
-          onChange={handleCard8InputChange}
+          value={state.card9Input3}
+          onChange={handleCard9InputChange}
         />
       </div>
     </div>
   );
 };
-export default Card8;
+export default Card9;

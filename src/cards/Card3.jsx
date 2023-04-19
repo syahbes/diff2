@@ -175,6 +175,8 @@ function Card3() {
               flexWrap: "wrap",
               gap: "10px",
               padding: "0 30px",
+              maxWidth: '300px'
+
             }}
           >
             {checkBoxMap.map((item) => (

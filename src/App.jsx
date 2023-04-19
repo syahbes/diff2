@@ -1,4 +1,5 @@
 import React, { useState, useReducer, useRef } from "react";
+
 import {
   Card1,
   Card2,
@@ -8,12 +9,15 @@ import {
   Card6,
   Card7,
   Card8,
+  Card9,
+  Card10,
 } from "./cards/cards";
 
 import { CardContext } from "./context";
 import "./App.css";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import generateDocx from "./generateDocx";
 
 function formatNumberWithCommas(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -28,6 +32,9 @@ const cards = [
   <Card6 />,
   <Card7 />,
   <Card8 />,
+  <Card9 />,
+  <Card10 />,
+
 ];
 
 const initialState = {
@@ -83,6 +90,14 @@ const initialState = {
   card7Switch4: false,
   card7Switch5: false,
   card7Input6: "",
+
+  card8input1: "",
+  card8input2: "",
+  card8input3: "",
+
+  card9input1: "",
+  card9input2: "",
+  card9input3: "",
 };
 
 function App() {
@@ -95,6 +110,7 @@ function App() {
     petsRef,
     securityRef,
     section10Ref,
+    card8Ref,
   ] = [
     "dateRef",
     "optionRef",
@@ -104,7 +120,9 @@ function App() {
     "petsRef",
     "securityRef",
     "section10Ref",
+    "card8Ref",
   ].map(() => useRef(null));
+
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -153,6 +171,7 @@ function App() {
       petsRef: petsRef,
       securityRef: securityRef,
       section10Ref: section10Ref,
+      card8Ref: card8Ref,
     };
     const targetRef = refMap[props];
     if (targetRef) {
@@ -161,7 +180,7 @@ function App() {
   }
 
   const handleLastCard = () => {
-    alert("סוף הטופס.. מפה צריך לייצא");
+    generateDocx(state)
     console.log("LAST");
   };
   function handleNext() {
@@ -192,6 +211,7 @@ function App() {
               variant="outlined"
               onClick={handlePrev}
               disabled={isFirstCard}
+              sx={{ display: isLastCard ? "none" : "block" }}
             >
               חזור
             </Button>
@@ -199,6 +219,8 @@ function App() {
               variant="contained"
               onClick={handleNext}
               // disabled={isLastCard}
+
+              sx={{ display: isLastCard ? "none" : "block" }}
             >
               {isLastCard ? "סיום" : "הבא"}
             </Button>
@@ -731,13 +753,38 @@ function App() {
               במחוז השיפוט שבה ממוקמת הדירה.
             </Typography>
           </div>
-          <div className="sectionA">
-            <Typography variant="body2" mb={2}>
-              ולראייה באו הצדדים על החתום:
-            </Typography>
-            <Typography variant="body2" mb={2}>
-              המשכיר
-            </Typography>
+          <Typography variant="body2" mb={2}>
+            ולראייה באו הצדדים על החתום:
+          </Typography>
+          <div className="sectionB" ref={card8Ref}>
+            <div>
+              <Typography variant="body2" mb={2}>
+                בעל הנכס
+              </Typography>
+              <Typography variant="body2" mb={1}>
+                שם : <mark>{state?.card8Input1}</mark>
+              </Typography>
+              <Typography variant="body2" mb={1}>
+                אי מייל : <mark>{state?.card8Input2}</mark>
+              </Typography>
+              <Typography variant="body2" mb={1}>
+                תעודת זהות : <mark>{state?.card8Input3}</mark>
+              </Typography>
+            </div>
+            <div>
+              <Typography variant="body2" mb={2}>
+                הדיירים
+              </Typography>
+              <Typography variant="body2" mb={1}>
+                שם : <mark>{state?.card9Input1}</mark>
+              </Typography>
+              <Typography variant="body2" mb={1}>
+                אי מייל : <mark>{state?.card9Input2}</mark>
+              </Typography>
+              <Typography variant="body2" mb={1}>
+                תעודת זהות : <mark>{state?.card9Input3}</mark>
+              </Typography>
+            </div>
           </div>
         </div>
       </div>

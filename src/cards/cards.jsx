@@ -6,3 +6,5 @@ export { default as Card5 } from './Card5';
 export { default as Card6 } from './Card6';
 export { default as Card7 } from './Card7';
 export { default as Card8 } from './Card8';
+export { default as Card9 } from './Card9';
+export { default as Card10 } from './Card10';
