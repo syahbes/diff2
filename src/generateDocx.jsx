@@ -1,36 +1,50 @@
 import { saveAs } from "file-saver";
 import { Document, Packer, Paragraph, TextRun } from "docx";
 
+const createTextRun = (options) => {
+  return new TextRun({ font: "Arial", rightToLeft: true, break: true, ...options });
+};
+
+const createParagraph = (options) => {
+  return new Paragraph({ font: "Arial", spacing: { after: 120 }, alignment: "center", ...options });
+};
+
 const generateDocx = (state) => {
+  const titleTextRun = createTextRun({ text: "הסכם שכירות", bold: true, size: 28 });
+  const titleParagraph = createParagraph({ children: [titleTextRun], spacing: { after: 240 } });
+
+  const textRuns = [
+    createTextRun({ text: "בין" }),
+    createTextRun({ text: "מר / גברת" }),
+    createTextRun({ text: "ת.ז." }),
+    createTextRun({ text: "מרחוב" }),
+    createTextRun({ text: "טלפון" }),
+    createTextRun({ text: '(להלן : "המשכיר")' }),
+    createTextRun({ text: "ובין" }),
+    createTextRun({ text: '(להלן : "השוכר/ים")' }),
+  ];
+
+  const mainParagraph = createParagraph({ children: textRuns });
+
+  // const firstParagraph = createParagraph({ children: [createTextRun({ text: "הסכם שכירות" })], spacing: { after: 120 } });
+
   const doc = new Document({
     sections: [
       {
         properties: {},
         children: [
-          new Paragraph({
-            children: [
-              new TextRun("Hello World"),
-              new TextRun(state.card1Input2),
-              new TextRun("Hello World"),
-              new TextRun({
-                text: state.card1Input1,
-                bold: true,
-              }),
-              new TextRun({
-                text: "\t Github is the best",
-                bold: true,
-              }),
-            ],
-          }),
+          titleParagraph,
+          mainParagraph,
+          // firstParagraph,
+          // Other Paragraphs, tables, etc.
         ],
       },
     ],
   });
 
   Packer.toBlob(doc).then((blob) => {
-    console.log(blob);
-    saveAs(blob, "example.docx");
-    console.log("Document created successfully");
+    saveAs(blob, "הסכם-שכירות.docx");
   });
 };
+
 export default generateDocx;

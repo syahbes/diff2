@@ -25,14 +25,14 @@ function formatNumberWithCommas(num) {
 
 const cards = [
   <Card1 />,
-  <Card2 />,
-  <Card3 />,
-  <Card4 />,
-  <Card5 />,
-  <Card6 />,
-  <Card7 />,
-  <Card8 />,
-  <Card9 />,
+  // <Card2 />,
+  // <Card3 />,
+  // <Card4 />,
+  // <Card5 />,
+  // <Card6 />,
+  // <Card7 />,
+  // <Card8 />,
+  // <Card9 />,
   <Card10 />,
 
 ];
@@ -180,7 +180,7 @@ function App() {
   }
 
   const handleLastCard = () => {
-    generateDocx(state)
+    // generateDocx(state)
     console.log("LAST");
   };
   function handleNext() {
