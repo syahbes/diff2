@@ -53,7 +53,7 @@ const Card6 = () => {
     <div className="card-container">
       <div className="centered-col">
         <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
-        <Typography variant="h6">
+        <Typography variant="h6" sx={{ maxWidth: "350px"}}>
           אוטוטו מסיימים, אבל לא לפני שנדבר על כמה כללי אצבע להתנהלות בנכס שלך
         </Typography>
 

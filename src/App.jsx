@@ -25,16 +25,15 @@ function formatNumberWithCommas(num) {
 
 const cards = [
   <Card1 />,
-  // <Card2 />,
-  // <Card3 />,
-  // <Card4 />,
-  // <Card5 />,
-  // <Card6 />,
-  // <Card7 />,
-  // <Card8 />,
-  // <Card9 />,
+  <Card2 />,
+  <Card3 />,
+  <Card4 />,
+  <Card5 />,
+  <Card6 />,
+  <Card7 />,
+  <Card8 />,
+  <Card9 />,
   <Card10 />,
-
 ];
 
 const initialState = {
@@ -122,7 +121,6 @@ function App() {
     "section10Ref",
     "card8Ref",
   ].map(() => useRef(null));
-
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -345,7 +343,9 @@ function App() {
             </Typography>
 
             {!state.card2Input3 ? (
-              <Typography variant="body2">ללא תקופת אופציה</Typography>
+              <Typography variant="body2" mb={2}>
+                ללא תקופת אופציה
+              </Typography>
             ) : (
               <>
                 <Typography variant="body2" mb={2}>
