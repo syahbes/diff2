@@ -90,13 +90,13 @@ const initialState = {
   card7Switch5: false,
   card7Input6: "",
 
-  card8input1: "",
-  card8input2: "",
-  card8input3: "",
+  card8Input1: "",
+  card8Input2: "",
+  card8Input3: "",
 
-  card9input1: "",
-  card9input2: "",
-  card9input3: "",
+  card9Input1: "",
+  card9Input2: "",
+  card9Input3: "",
 };
 
 function App() {
@@ -514,7 +514,7 @@ function App() {
                 "השוכר מתחייב שלא להכניס בעלי חיים לדירה."
               ) : (
                 <mark>
-                  מוסכם כי השוכר יהיה רשאי להחזיק בדירה חיית מחמד, בכפוך לכך
+                  מוסכם כי השוכר יהיה רשאי להחזיק בדירה חיית מחמד, בכפוף לכך
                   שהשוכר מאשר כי האמור בסעיף 6.3 לעיל יחול ויחייב אותו גם בכל
                   הקשור להחזקת חיית המחמד.
                 </mark>

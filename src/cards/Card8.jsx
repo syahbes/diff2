@@ -37,10 +37,10 @@ const Card8 = () => {
         <TextField
           fullWidth
           id="card8Input1"
+          value={state.card8Input1}
           label="שם בעל הנכס"
           variant="standard"
           size="small"
-          value={state.card8Input1}
           onChange={handleCard8InputChange}
         />
         <TextField
