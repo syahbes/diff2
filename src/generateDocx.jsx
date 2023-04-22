@@ -577,20 +577,16 @@ const generateDocx = (state) => {
           font: "Arial",
           size: 20,
           rightToLeft: true,
-
         }),
         new TextRun({
           text: `\t${a}`,
           font: "Arial",
           size: 20,
           rightToLeft: true,
-
         }),
       ],
     });
   };
-
-
 
   const doc = new Document({
     sections: [
@@ -615,17 +611,27 @@ const generateDocx = (state) => {
           paragraph12,
           lastParagraph,
           finalParagraph("בעל הנכס", "הדיירים"),
-          finalParagraph(`שם בעל הנכס: ${state.card8Input1}`, `שם הדיירים: ${state.card9Input1}`),
-          finalParagraph(`${state.card8Input2} : אי מייל`, `${state.card9Input2} : אי מייל`),
-          finalParagraph(`תעודת זהות: ${state.card8Input3}`, `תעודת זהות: ${state.card9Input3}`),
+          finalParagraph(
+            `שם בעל הנכס: ${state.card8Input1}`,
+            `שם הדיירים: ${state.card9Input1}`
+          ),
+          finalParagraph(
+            `${state.card8Input2} : אי מייל`,
+            `${state.card9Input2} : אי מייל`
+          ),
+          finalParagraph(
+            `תעודת זהות: ${state.card8Input3}`,
+            `תעודת זהות: ${state.card9Input3}`
+          ),
         ],
       },
     ],
   });
 
   Packer.toBlob(doc).then((blob) => {
-    saveAs(blob, "הסכם-שכירות.docx");
+    window.saveAs(blob, "הסכם-שכירות.docx");
   });
+
 };
 
 export default generateDocx;

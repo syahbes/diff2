@@ -24,16 +24,16 @@ function formatNumberWithCommas(num) {
 }
 
 const cards = [
-  <Card1 />,
-  <Card2 />,
-  <Card3 />,
-  <Card4 />,
-  <Card5 />,
-  <Card6 />,
-  <Card7 />,
-  <Card8 />,
-  <Card9 />,
-  <Card10 />,
+  <Card8 />, // פרטי בעל הנכס
+  <Card9 />, // פרטי דיירים
+  <Card1 />, // כתובת הנכס
+  <Card2 />, //
+  <Card3 />, //
+  <Card4 />, //
+  <Card5 />, //
+  <Card6 />, //
+  <Card7 />, //
+  <Card10 />, // יצוא לקובץ
 ];
 
 const initialState = {
@@ -93,10 +93,12 @@ const initialState = {
   card8Input1: "",
   card8Input2: "",
   card8Input3: "",
+  card8Input4: "",
 
   card9Input1: "",
   card9Input2: "",
   card9Input3: "",
+  card9Input4: "",
 };
 
 function App() {
@@ -179,7 +181,7 @@ function App() {
 
   const handleLastCard = () => {
     // generateDocx(state)
-    console.log("LAST");
+    console.log("Last card");
   };
   function handleNext() {
     if (currentCard === cards.length - 1) {
@@ -770,6 +772,9 @@ function App() {
               <Typography variant="body2" mb={1}>
                 תעודת זהות : <mark>{state?.card8Input3}</mark>
               </Typography>
+              <Typography variant="body2" mb={1}>
+                טלפון : <mark>{state?.card8Input4}</mark>
+              </Typography>
             </div>
             <div>
               <Typography variant="body2" mb={2}>
@@ -784,6 +789,10 @@ function App() {
               <Typography variant="body2" mb={1}>
                 תעודת זהות : <mark>{state?.card9Input3}</mark>
               </Typography>
+              <Typography variant="body2" mb={1}>
+                טלפון : <mark>{state?.card9Input4}</mark>
+              </Typography>
+
             </div>
           </div>
         </div>

@@ -33,7 +33,7 @@ const Card8 = () => {
     <div className="card-container">
       <div className="centered-col">
         <Avatar alt="avatar" src={avatrImage} sx={{ width: 50, height: 50 }} />
-        <Typography variant="h6">שלב אחרון - הזנת פרטים</Typography>
+        <Typography variant="h6">שלב ראשון - הזנת פרטים</Typography>
         <TextField
           fullWidth
           id="card8Input1"
@@ -62,6 +62,16 @@ const Card8 = () => {
           value={state.card8Input3}
           onChange={handleCard8InputChange}
         />
+        <TextField
+          fullWidth
+          id="card8Input4"
+          label="טלפון בעל הנכס"
+          variant="standard"
+          size="small"
+          type="number"
+          value={state.card8Input4}
+          onChange={handleCard8InputChange}
+          />
       </div>
     </div>
   );
