@@ -9,6 +9,8 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import generateDocx from "../generateDocx";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PDFDoc from "../PDFDoc";
 
 //ltr
 const cacheLtr = createCache({
@@ -27,13 +29,27 @@ const Card10 = () => {
           מסך אחרון - צריך להחליף טקסט
         </Typography>
         <Button
+          sx={{
+            marginBottom: "20px",
+          }}
           variant="contained"
           onClick={() => {
             generateDocx(state);
           }}
+
         >
-          לחצו עלי להורדת המסמך
+          להורדת DOCX
         </Button>
+
+        <PDFDownloadLink
+          document={<PDFDoc />}
+          fileName={"הסכם-שכירות.pdf"}
+          download
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading..." : <Button variant="contained">להורדת PDF</Button>
+          }
+        </PDFDownloadLink>
       </div>
     </div>
   );
