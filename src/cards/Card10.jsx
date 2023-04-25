@@ -36,18 +36,21 @@ const Card10 = () => {
           onClick={() => {
             generateDocx(state);
           }}
-
         >
           להורדת DOCX
         </Button>
 
         <PDFDownloadLink
-          document={<PDFDoc />}
+          document={<PDFDoc state={state}/>}
           fileName={"הסכם-שכירות.pdf"}
           download
         >
           {({ blob, url, loading, error }) =>
-            loading ? "Loading..." : <Button variant="contained">להורדת PDF</Button>
+            loading ? (
+              "Loading..."
+            ) : (
+              <Button variant="contained">להורדת PDF</Button>
+            )
           }
         </PDFDownloadLink>
       </div>
