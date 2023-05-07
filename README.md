@@ -10,4 +10,4 @@ State management using React's Context API for better performance and scalabilit
 ##Link
 Live at : https://diffe-rent-beta.netlify.app/
 
-Screenshot : ![image](https://user-images.githubusercontent.com/99732661/236702114-0a1c5d73-af11-405b-9567-377ec763170c.png)
+![image](https://user-images.githubusercontent.com/99732661/236702114-0a1c5d73-af11-405b-9567-377ec763170c.png)
